@@ -1,1 +1,1 @@
-# Predicting-LOL-analytics
+# Predicting League of Legends Analytics
