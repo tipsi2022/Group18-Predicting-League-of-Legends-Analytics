@@ -8,7 +8,7 @@ So our website could provide a new direction in the field of competitive gaming,
 1. Django can be installed easily using pip.
 2. In the command prompt, execute the following command: pip install django(This will download and install Django)
 3. After the installation has completed, you can verify your Django installation by executing django-admin --version in the command prompt.
-4. To run the django project typ python manage.py runserver in the command prompt.
+4. To run the django project type python manage.py runserver in the command prompt.
 
 # How to push code in the github
 1. Clone repository: git clone https://github.com/tipsi2022/Group18-Predicting-League-of-Legends-Analytics.git
