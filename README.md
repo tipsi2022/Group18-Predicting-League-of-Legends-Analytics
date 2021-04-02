@@ -10,8 +10,6 @@ So our website could provide a new direction in the field of competitive gaming,
 3. After the installation has completed, you can verify your Django installation by executing django-admin --version in the command prompt.
 4. To run the django project type python manage.py runserver in the command prompt.
 
-# How to push code in the github
-
 # Development
 
 1. First Fork this repository and then Clone the Forked repository.
