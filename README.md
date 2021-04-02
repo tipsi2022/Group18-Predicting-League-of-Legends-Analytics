@@ -11,10 +11,8 @@ So our website could provide a new direction in the field of competitive gaming,
 4. To run the django project type python manage.py runserver in the command prompt.
 
 # How to push code in the github
-1. Clone repository: git clone https://github.com/tipsi2022/Group18-Predicting-League-of-Legends-Analytics.git
-2. cd Group18-Predicting-League-of-Legends-Analytics
-3. Locally create new branch using git checkout -b dev-your name
-4. Add updated file: git add file-name
-5. Commit the new changes: git commit -m "Appropriate message"
-6. Push commit to githib: git push origin dev-your name
-7. Go to github and create pull request from your branch to master branch.
+1. First Fork this repository and then Clone the Forked repository.
+2. Add your local repository as origin
+git remote add origin <your-url>
+3.Add this repository as upstream
+git remote add upstream 
