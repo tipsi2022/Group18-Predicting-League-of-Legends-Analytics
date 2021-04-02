@@ -11,13 +11,14 @@ So our website could provide a new direction in the field of competitive gaming,
 4. To run the django project type python manage.py runserver in the command prompt.
 
 # How to push code in the github
+
 # Development
 
 1. First Fork this repository and then Clone the Forked repository.
-2. Add your local repository as origin- git remote add origin <your-url>
+2. Add your local repository as origin- git remote add origin <your-url>.
 3.Add this repository as upstream-
-git remote add upstream https://github.com/tipsi2022/Group18-Predicting-League-of-Legends-Analytics.git
-4.To sync your local repository with central repository - git pull upstream main
+git remote add upstream https://github.com/tipsi2022/Group18-Predicting-League-of-Legends-Analytics.git.
+4.To sync your local repository with central repository - git pull upstream main.
 
 # Contribution
 -Create new branch and name it on the issue/feature you are working.
