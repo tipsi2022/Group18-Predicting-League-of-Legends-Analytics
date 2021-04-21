@@ -32,3 +32,4 @@ So our website could provide a new direction in the field of competitive gaming,
 4. use `npm start` to start react server
 5. if changes are made, one has to rebulid the app to run it on the **django server**
 6. use `npm run build` to build the modified app.
+
