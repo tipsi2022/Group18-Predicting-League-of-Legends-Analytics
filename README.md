@@ -23,6 +23,7 @@ So our website could provide a new direction in the field of competitive gaming,
 1. To create new branch - git checkout -b <branch-name>
 2. to shift from one branch to another - git cheackout <branch-name>
 3. After completing create PR on that branch - git push origin <branch-name>
+4. Go to github and create pull request on your branch to master branch.
 
 # Working on Frontend
 1. Clone the Forked repository
