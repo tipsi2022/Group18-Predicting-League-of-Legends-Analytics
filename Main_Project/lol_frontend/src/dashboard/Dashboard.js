@@ -131,13 +131,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Dashboard");
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
     document.title = title;
   }, [title]);
 
+  function changeTitle(newTitle) {
+    return setTitle(newTitle);
+  }
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -217,9 +220,11 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{<MainListItems title={title} />}</List>
+        <List>{<MainListItems title={title} changeTitle={changeTitle} />}</List>
         <Divider />
-        <List>{<SecondaryListItems title={title} />}</List>
+        <List>
+          {<SecondaryListItems title={title} changeTitle={changeTitle} />}
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -262,7 +267,6 @@ export default function Dashboard() {
               </Route>
             </Switch>
           </Grid>
-
           <Box pt={4}>
             <Copyright />
           </Box>

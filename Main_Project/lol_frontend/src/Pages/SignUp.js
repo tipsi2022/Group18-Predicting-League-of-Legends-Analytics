@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Link as RouterLink } from "react-router-dom";
 
 import challenger from "../Assets/challenger.png";
 
@@ -38,7 +39,7 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <img style={{ height: "150px" }} src={challenger} alt="signin" />
+        <img style={{ height: "150px" }} src={challenger} alt="signup" />
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -102,7 +103,7 @@ export default function SignUp() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/sign-in" variant="body2">
+              <Link component={RouterLink} to="/sign-in" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

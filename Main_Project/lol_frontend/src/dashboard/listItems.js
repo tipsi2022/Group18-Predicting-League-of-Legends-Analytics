@@ -17,31 +17,56 @@ import {
 export function MainListItems(props) {
   return (
     <div>
-      <ListItem button component={RouterLink} to="/">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/"
+        onClick={() => props.changeTitle("Dashboard")}
+      >
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/lead">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/lead"
+        onClick={() => props.changeTitle("LeaderBoard")}
+      >
         <ListItemIcon>
           <Equalizer />
         </ListItemIcon>
         <ListItemText primary="LeaderBoard" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/champions">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/champions"
+        onClick={() => props.changeTitle("Champions")}
+      >
         <ListItemIcon>
           <Face />
         </ListItemIcon>
         <ListItemText primary="Champions" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/tier-list">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/tier-list"
+        onClick={() => props.changeTitle("Tier List")}
+      >
         <ListItemIcon>
           <Timeline />
         </ListItemIcon>
         <ListItemText primary="Tier List" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/how-to-play">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/how-to-play"
+        onClick={() => props.changeTitle("How to Play")}
+      >
         <ListItemIcon>
           <Subject />
         </ListItemIcon>
@@ -55,19 +80,34 @@ export function SecondaryListItems(props) {
   return (
     <div>
       <ListSubheader inset>Player Details</ListSubheader>
-      <ListItem button component={RouterLink} to="/profile">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/profile"
+        onClick={() => props.changeTitle("Your Profile")}
+      >
         <ListItemIcon>
           <Person />
         </ListItemIcon>
         <ListItemText primary="Your Profile" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/personal-stats">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/personal-stats"
+        onClick={() => props.changeTitle("Personal Stats")}
+      >
         <ListItemIcon>
           <Equalizer />
         </ListItemIcon>
         <ListItemText primary="Personal Stats" />
       </ListItem>
-      <ListItem button component={RouterLink} to="/suggestions">
+      <ListItem
+        button
+        component={RouterLink}
+        to="/suggestions"
+        onClick={() => props.changeTitle("Suggestions")}
+      >
         <ListItemIcon>
           <EmojiObjects />
         </ListItemIcon>
