@@ -9,66 +9,70 @@ import {
   EmojiObjects,
   Equalizer,
   Face,
-  FormatListNumbered,
   Person,
   Subject,
+  Timeline,
 } from "@material-ui/icons";
 
-export const mainListItems = (
-  <div>
-    <ListItem button component={RouterLink} to="/">
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button component={RouterLink} to="/lead">
-      <ListItemIcon>
-        <Equalizer />
-      </ListItemIcon>
-      <ListItemText primary="LeaderBoard" />
-    </ListItem>
-    <ListItem button component={RouterLink} to="/champions">
-      <ListItemIcon>
-        <Face />
-      </ListItemIcon>
-      <ListItemText primary="Champions" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <FormatListNumbered />
-      </ListItemIcon>
-      <ListItemText primary="Tier List" />
-    </ListItem>
-    <ListItem button component={RouterLink} to="/how-to-play">
-      <ListItemIcon>
-        <Subject />
-      </ListItemIcon>
-      <ListItemText primary="How to play" />
-    </ListItem>
-  </div>
-);
+export function MainListItems(props) {
+  return (
+    <div>
+      <ListItem button component={RouterLink} to="/">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/lead">
+        <ListItemIcon>
+          <Equalizer />
+        </ListItemIcon>
+        <ListItemText primary="LeaderBoard" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/champions">
+        <ListItemIcon>
+          <Face />
+        </ListItemIcon>
+        <ListItemText primary="Champions" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/tier-list">
+        <ListItemIcon>
+          <Timeline />
+        </ListItemIcon>
+        <ListItemText primary="Tier List" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/how-to-play">
+        <ListItemIcon>
+          <Subject />
+        </ListItemIcon>
+        <ListItemText primary="How to play" />
+      </ListItem>
+    </div>
+  );
+}
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Player Details</ListSubheader>
-    <ListItem button component={RouterLink} to="/profile">
-      <ListItemIcon>
-        <Person />
-      </ListItemIcon>
-      <ListItemText primary="Your Profile" />
-    </ListItem>
-    <ListItem button component={RouterLink} to="/personal-stats">
-      <ListItemIcon>
-        <Equalizer />
-      </ListItemIcon>
-      <ListItemText primary="Personal Stats" />
-    </ListItem>
-    <ListItem button component={RouterLink} to="/suggestions">
-      <ListItemIcon>
-        <EmojiObjects />
-      </ListItemIcon>
-      <ListItemText primary="Suggestions" />
-    </ListItem>
-  </div>
-);
+export function SecondaryListItems(props) {
+  return (
+    <div>
+      <ListSubheader inset>Player Details</ListSubheader>
+      <ListItem button component={RouterLink} to="/profile">
+        <ListItemIcon>
+          <Person />
+        </ListItemIcon>
+        <ListItemText primary="Your Profile" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/personal-stats">
+        <ListItemIcon>
+          <Equalizer />
+        </ListItemIcon>
+        <ListItemText primary="Personal Stats" />
+      </ListItem>
+      <ListItem button component={RouterLink} to="/suggestions">
+        <ListItemIcon>
+          <EmojiObjects />
+        </ListItemIcon>
+        <ListItemText primary="Suggestions" />
+      </ListItem>
+    </div>
+  );
+}

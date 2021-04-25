@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import {
   ButtonGroup,
@@ -20,11 +20,12 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { MainListItems, SecondaryListItems } from "./listItems";
 import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import Chart from "../Components/Chart";
 import Champions from "../Components/Champions";
+import TierList from "../Components/TierList";
 import Leaderboard from "../Components/LeaderBoard";
 import HowToPlay from "../Components/HowToPlay";
 import Profile from "../Components/Profile";
@@ -130,7 +131,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [title, setTitle] = useState("");
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -166,7 +173,7 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            {title}
           </Typography>
           <ButtonGroup
             className={classes.root}
@@ -174,13 +181,23 @@ export default function Dashboard() {
             color="default"
             variant="contained"
           >
-            <Button startIcon={<Person />} component={RouterLink} to="/sign-in">
+            <Button
+              startIcon={<Person />}
+              component={RouterLink}
+              to="/sign-in"
+              onClick={() => {
+                setTitle("sign-in");
+              }}
+            >
               SignIn
             </Button>
             <Button
               startIcon={<PersonAdd />}
               component={RouterLink}
               to="/sign-up"
+              onClick={() => {
+                setTitle("sign-up");
+              }}
             >
               SignUp
             </Button>
@@ -200,9 +217,9 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>{<MainListItems title={title} />}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>{<SecondaryListItems title={title} />}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -224,6 +241,9 @@ export default function Dashboard() {
               </Route>
               <Route exact path="/champions">
                 {championData.map(Champions)}
+              </Route>
+              <Route exact path="/tier-list">
+                <TierList />
               </Route>
               <Route exact path="/lead">
                 <Leaderboard />
