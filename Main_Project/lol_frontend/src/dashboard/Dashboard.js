@@ -31,7 +31,7 @@ import HowToPlay from "../Components/HowToPlay";
 import Profile from "../Components/Profile";
 import PersonalStats from "../Components/PersonalStats";
 import Suggestions from "../Components/Suggestions";
-import { Person, PersonAdd } from "@material-ui/icons";
+import { ExitToApp, Person, PersonAdd } from "@material-ui/icons";
 import { Route, Switch, Link as RouterLink } from "react-router-dom";
 import championData from "../Data/allChampionsData";
 
@@ -133,6 +133,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [title, setTitle] = useState("Dashboard");
   const [open, setOpen] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     document.title = title;
@@ -178,33 +179,65 @@ export default function Dashboard() {
           >
             {title}
           </Typography>
-          <ButtonGroup
-            className={classes.root}
-            size="large"
-            color="default"
-            variant="contained"
-          >
-            <Button
-              startIcon={<Person />}
-              component={RouterLink}
-              to="/sign-in"
-              onClick={() => {
-                setTitle("sign-in");
-              }}
+          {!isAuthenticated && (
+            <ButtonGroup
+              className={classes.root}
+              size="large"
+              color="default"
+              variant="contained"
             >
-              SignIn
-            </Button>
-            <Button
-              startIcon={<PersonAdd />}
-              component={RouterLink}
-              to="/sign-up"
-              onClick={() => {
-                setTitle("sign-up");
-              }}
+              <Button
+                startIcon={<Person />}
+                component={RouterLink}
+                to="/sign-in"
+                onClick={() => {
+                  setTitle("sign-in");
+                }}
+              >
+                SignIn
+              </Button>
+              <Button
+                startIcon={<PersonAdd />}
+                component={RouterLink}
+                to="/sign-up"
+                onClick={() => {
+                  setTitle("sign-up");
+                }}
+              >
+                SignUp
+              </Button>
+            </ButtonGroup>
+          )}
+          {isAuthenticated && (
+            <ButtonGroup
+              className={classes.root}
+              size="large"
+              color="default"
+              variant="contained"
             >
-              SignUp
-            </Button>
-          </ButtonGroup>
+              <Button
+                startIcon={<Person />}
+                component={RouterLink}
+                to="/profile"
+                onClick={() => {
+                  setTitle("Profile");
+                }}
+              >
+                Profile
+              </Button>
+              <Button
+                startIcon={<ExitToApp />}
+                component={RouterLink}
+                to="#"
+                onClick={() => {
+                  setTitle("Logging Out");
+                  setIsAuthenticated(false);
+                }}
+              >
+                LogOut
+              </Button>
+            </ButtonGroup>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
