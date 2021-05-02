@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -32,12 +32,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const responseGoogle = (response) => {
-    console.log(response);
-};
-
 export default function SignIn() {
     const classes = useStyles();
+    const [userDetails, setUserDetails] = useState({ email: "", password: "" });
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    };
+
+    function handleClick(e) {
+        console.log(userDetails);
+        e.preventDefault();
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -57,6 +63,10 @@ export default function SignIn() {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        value={userDetails.email}
+                        onChange={(e) => {
+                            setUserDetails({ ...userDetails, email: e.target.value });
+                        }}
                         autoFocus
                     />
                     <TextField
@@ -68,9 +78,20 @@ export default function SignIn() {
                         label="Password"
                         type="password"
                         id="password"
+                        value={userDetails.password}
+                        onChange={(e) => {
+                            setUserDetails({ ...userDetails, password: e.target.value });
+                        }}
                         autoComplete="current-password"
                     />
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={(e) => handleClick(e)}
+                    >
                         Sign In
                     </Button>
                     <Typography align="center" variant="h6" color="primary">
