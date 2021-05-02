@@ -33,7 +33,7 @@ import PersonalStats from "../Components/PersonalStats";
 import Suggestions from "../Components/Suggestions";
 import { ExitToApp, Person, PersonAdd } from "@material-ui/icons";
 import { Route, Switch, Link as RouterLink } from "react-router-dom";
-import championData from "../Data/allChampionsData";
+
 
 function Copyright() {
   return (
@@ -278,7 +278,7 @@ export default function Dashboard() {
                 </Grid>
               </Route>
               <Route exact path="/champions">
-                {championData.map(Champions)}
+                <Champions/>
               </Route>
               <Route exact path="/tier-list">
                 <TierList />
