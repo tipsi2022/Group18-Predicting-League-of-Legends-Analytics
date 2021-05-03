@@ -6,9 +6,11 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link as RouterLink } from "react-router-dom";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import {
+  CompareArrows,
   EmojiObjects,
   Equalizer,
   Face,
+  GetApp,
   Person,
   Subject,
   Timeline,
@@ -113,6 +115,28 @@ export function SecondaryListItems(props) {
         </ListItemIcon>
         <ListItemText primary="Suggestions" />
       </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/comparison"
+        onClick={() => props.changeTitle("Comparison")}
+      >
+        <ListItemIcon>
+          <CompareArrows />
+        </ListItemIcon>
+        <ListItemText primary="Compare" />
+      </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/get-app"
+        onClick={() => props.changeTitle("Get App")}
+      >
+        <ListItemIcon>
+          <GetApp />
+        </ListItemIcon>
+        <ListItemText primary="Download App" />
+      </ListItem>      
     </div>
   );
 }

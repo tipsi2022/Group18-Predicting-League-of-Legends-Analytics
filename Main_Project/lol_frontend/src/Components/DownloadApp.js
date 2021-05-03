@@ -3,11 +3,11 @@ import React from "react";
 // import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-export default function HowToPlay() {
+export default function DownloadApp() {
   return (
     <React.Fragment>
       <Typography component="p" variant="h4">
-        All Game Instructions goes Here!
+        Download Our Real Time Analytics App for best results!
       </Typography>
     </React.Fragment>
   );
