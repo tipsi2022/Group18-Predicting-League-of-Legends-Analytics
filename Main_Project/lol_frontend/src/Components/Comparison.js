@@ -3,11 +3,11 @@ import React from "react";
 // import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-export default function HowToPlay() {
+export default function Comparison() {
   return (
     <React.Fragment>
       <Typography component="p" variant="h4">
-        All Game Instructions goes Here!
+        This is Comparison Section!
       </Typography>
     </React.Fragment>
   );
