@@ -20,7 +20,16 @@ So our website could provide a new direction in the field of competitive gaming,
 # Contribution
 -Create new branch and name it on the issue/feature you are working.
 
-1. To create new branch - git checkout -b branch-name
-2. to shift from one branch to another - git cheackout branch-name
-3. After completing create PR on that branch - git push origin branch-name
+1. To create new branch - git checkout -b <branch-name>
+2. to shift from one branch to another - git cheackout <branch-name>
+3. After completing create PR on that branch - git push origin <branch-name>
 4. Go to github and create pull request on your branch to master branch.
+
+# Working on Frontend
+1. Clone the Forked repository
+2. Open Main_Project > lol_frontend
+3. use command `npm install` to install required node modules.
+4. use `npm start` to start react server
+5. if changes are made, one has to rebulid the app to run it on the **django server**
+6. use `npm run build` to build the modified app.
+
