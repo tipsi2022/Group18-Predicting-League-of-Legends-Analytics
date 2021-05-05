@@ -10,7 +10,7 @@ import {
     CardActions,
     CardActionArea,
     Card,
-    
+    Grid,
 } from "@material-ui/core";
 
 // import championData from "../Data/allChampionsData";
@@ -23,25 +23,29 @@ import {
 // });
 
 export default function Champions() {
-    const [championData, setChampionData] = useState([]);
+    const [championData, setChampionData] = useState(null);
+    // const classes = useStyles();
     useEffect(() => {
         axios
             .get("http://ddragon.leagueoflegends.com/cdn/11.9.1/data/en_US/champion.json")
             .then((res) => {
-                console.log(Object.values(res.data.data));
+                // console.log(Object.values(res.data.data));
                 setChampionData(Object.values(res.data.data));
             })
             .catch((err) => console.log(err));
     }, []);
-
-    return <>{championData.map(CreateChampions)}</>;
+    return (
+        <Grid container spacing={2}>
+            {championData && championData.map(CreateChampions)}
+        </Grid>
+    );
 }
 
 function CreateChampions(props) {
-    // const classes = useStyles();
     return (
-        <Card key={props.id}>
-            <CardActionArea component={RouterLink} to={`/champions/${props.id}`}>
+        <Grid item lg={3} md={4} sm={11} key={props.id}>
+            <Card>
+                <CardActionArea component={RouterLink} to={`/champions/${props.id}`}>
                     <CardMedia
                         component="img"
                         alt="Champion Pic"
@@ -60,19 +64,20 @@ function CreateChampions(props) {
                             {props.tags.join(" /")}
                         </Typography>
                     </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <ButtonGroup size="small" color="primary">
-                    <Button>Att</Button>
-                    {/* {props.info.attack} */}
-                    <Button>Def</Button>
-                    {/* {props.info.defense} */}
-                    <Button>mag</Button>
-                    {/* {props.info.magic} */}
-                    <Button>diff</Button>
-                    {/* {props.info.difficulty} */}
-                </ButtonGroup>
-            </CardActions>
-        </Card>
+                </CardActionArea>
+                <CardActions>
+                    <ButtonGroup fullWidth size="small" color="primary" variant="contained">
+                        <Button>Attack {props.info.attack}</Button>
+                        <Button>Defense {props.info.defense}</Button>
+                    </ButtonGroup>
+                </CardActions>
+                <CardActions>
+                    <ButtonGroup fullWidth size="small" color="secondary" variant="contained">
+                        <Button>magic {props.info.magic}</Button>
+                        <Button>difficulty {props.info.difficulty}</Button>
+                    </ButtonGroup>
+                </CardActions>
+            </Card>
+        </Grid>
     );
 }
