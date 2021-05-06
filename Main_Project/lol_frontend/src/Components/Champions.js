@@ -20,8 +20,10 @@ const useStyles = makeStyles({
     root: {
         background: "#f2e4fd",
     },
+    tile:{
+        color:"blue",
+    },
 
-    darkGrey: {},
 });
 
 export default function Champions() {
@@ -55,7 +57,7 @@ export default function Champions() {
                                             title="Contemplative Reptile"
                                         />
                                         <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.tile}>
                                                 {props.name}
                                             </Typography>
                                             <Typography variant="body2" color="textSecondary" component="p">

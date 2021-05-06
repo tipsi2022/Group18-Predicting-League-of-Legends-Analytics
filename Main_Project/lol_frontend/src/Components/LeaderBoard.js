@@ -13,7 +13,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { SelectAllRounded } from "@material-ui/icons";
 
 const useStyles = makeStyles({
     root: {
@@ -37,9 +36,9 @@ export default function BasicTable() {
     const classes = useStyles();
 
     const [param, setParam] = useState({
-        leagues_arr: "",
-        queue_arr: "",
-        region_arr: "",
+        league: "",
+        queue: "",
+        region: "",
     });
 
     const [dat, setDat] = useState(null);
@@ -51,15 +50,15 @@ export default function BasicTable() {
     };
 
     const handleChangeRegion = (event) => {
-        setParam({ ...param, region_arr: event.target.value });
+        setParam({ ...param, region: event.target.value });
     };
 
     const handleChangeQueue = (event) => {
-        setParam({ ...param, queue_arr: event.target.value });
+        setParam({ ...param, queue: event.target.value });
     };
 
     const handleChangeLeague = (event) => {
-        setParam({ ...param, leagues_arr: event.target.value });
+        setParam({ ...param, league: event.target.value });
     };
 
     return (
