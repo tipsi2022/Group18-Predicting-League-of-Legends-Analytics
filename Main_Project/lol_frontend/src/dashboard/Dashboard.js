@@ -25,6 +25,7 @@ import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import Chart from "../Components/Chart";
 import Champions from "../Components/Champions";
+import Items from "../Components/Items";
 import TierList from "../Components/TierList";
 import Leaderboard from "../Components/LeaderBoard";
 import HowToPlay from "../Components/HowToPlay";
@@ -252,9 +253,12 @@ export default function Dashboard() {
                                 </Grid>
                             </Route>
                             <Route exact path="/champions" component={Champions} />
+
                             <Route exact path="/champions/:championName">
                                 <DisplayChampion title={title} changeTitle={changeTitle} />
                             </Route>
+                            
+                            <Route exact path="/items" component={Items} />
                             <Route exact path="/tier-list" component={TierList} />
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />

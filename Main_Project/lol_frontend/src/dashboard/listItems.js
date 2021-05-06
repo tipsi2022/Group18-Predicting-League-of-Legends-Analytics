@@ -10,6 +10,7 @@ import {
   EmojiObjects,
   Equalizer,
   Face,
+  Flare,
   GetApp,
   Person,
   Subject,
@@ -52,6 +53,19 @@ export function MainListItems(props) {
         </ListItemIcon>
         <ListItemText primary="Champions" />
       </ListItem>
+      
+      <ListItem
+        button
+        component={RouterLink}
+        to="/items"
+        onClick={() => props.changeTitle("Items")}
+      >
+        <ListItemIcon>
+          <Flare />
+        </ListItemIcon>
+        <ListItemText primary="Items" />
+      </ListItem>
+
       <ListItem
         button
         component={RouterLink}
