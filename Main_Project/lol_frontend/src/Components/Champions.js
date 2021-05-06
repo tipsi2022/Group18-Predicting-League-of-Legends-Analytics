@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     tile:{
         color:"blue",
     },
-    darkGrey: {},
+
 });
 
 export default function Champions() {
