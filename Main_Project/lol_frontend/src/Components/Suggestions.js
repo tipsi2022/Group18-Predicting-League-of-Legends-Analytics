@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 // import Link from "@material-ui/core/Link";
 // import { makeStyles } from "@material-ui/core/styles";
-import chartData from "../Data/chartData";
+// import chartData from "../Data/chartData";
 import {
     Button,
     FormControl,
@@ -14,7 +14,7 @@ import {
     Typography,
 } from "@material-ui/core";
 import BarSuggesstion from "./BarSuggesstion";
-// import axios from "axios";   //Uncomment this
+import axios from "axios"; //Uncomment this
 
 const useStyles = makeStyles({
     root: {
@@ -42,6 +42,7 @@ export default function Suggestions() {
     const [reg, setReg] = useState("");
     const [sumName, setSumName] = useState("");
     const [fields, setFields] = useState({ summonername: "", region: "" });
+    const [chartData, setChartData] = useState(null);
 
     const classes = useStyles();
 
@@ -49,13 +50,13 @@ export default function Suggestions() {
         console.log(sumName);
         console.log(reg);
         setFields({ summonername: sumName, region: reg });
-        // axios
-        //     .post("/suggestions", {
-        //         summonerName: sName,
-        //     })
-        //     .then((res) => console.log(res))
-        //     .catch((err) => console.log(err));
-        // console.log(fields);
+        axios
+            .post("/api/suggestion", { region: reg, summnorname: sumName })
+            .then((res) => {
+                console.log(res);
+                setChartData(res.data);
+            })
+            .catch((err) => console.log(err));
         console.log(chartData);
     }
 
@@ -108,7 +109,7 @@ export default function Suggestions() {
                 </Button>
             </Typography>
 
-            {fields.region !== "" && fields.summonername !== "" && (
+            {fields.region !== "" && fields.summonername !== "" && chartData !== null && (
                 <>
                     <Typography className={classes.root}>Here is Suggesstions</Typography>
                     <BarSuggesstion data={chartData} />
