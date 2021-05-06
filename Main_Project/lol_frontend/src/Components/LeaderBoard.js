@@ -45,8 +45,13 @@ export default function BasicTable() {
 
     const handleClick = () => {
         console.log(param);
-        setDat(param);
-        // POST REQUEST HERE!
+        axios
+            .post("/api/leaderBoard", param)
+            .then((res) => {
+                console.log(res.data);
+                setDat(res.data);
+            })
+            .catch((err) => console.log(err));
     };
 
     const handleChangeRegion = (event) => {
@@ -122,7 +127,7 @@ export default function BasicTable() {
             </Paper>
             {dat === null ? (
                 <Typography variant="h3" color="textSecondary" align="center">
-                    Leaderboard Will be Shown Here!
+                    Leaderboard Will be Shown Here! 
                 </Typography>
             ) : (
                 <Paper className={classes.table} elevation={2}>
@@ -131,20 +136,22 @@ export default function BasicTable() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="center">Rank</TableCell>
-                                    <TableCell align="center">Summoner</TableCell>
-                                    <TableCell align="center">Tier</TableCell>
+                                    <TableCell align="center">Summoner Name</TableCell>
                                     <TableCell align="center">LP</TableCell>
+                                    <TableCell align="center">Wins</TableCell>
+                                    <TableCell align="center">Loss</TableCell>
                                     <TableCell align="center">Win Rate</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {data.map((x) => (
-                                    <TableRow key={x.rank}>
-                                        <TableCell align="center">{x.rank}</TableCell>
-                                        <TableCell align="center">{x.name}</TableCell>
-                                        <TableCell align="center">{x.tier}</TableCell>
-                                        <TableCell align="center">{x.lp}</TableCell>
-                                        <TableCell align="center">{x.winRate} %</TableCell>
+                                {dat.map((x, ind) => (
+                                    <TableRow key={ind}>
+                                        <TableCell align="center">{ind + 1}</TableCell>
+                                        <TableCell align="center">{x[0]}</TableCell>
+                                        <TableCell align="center">{x[1]}</TableCell>
+                                        <TableCell align="center">{x[2]}</TableCell>
+                                        <TableCell align="center">{x[3]}</TableCell>
+                                        <TableCell align="center">{x[4]} %</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
