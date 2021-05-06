@@ -10,7 +10,7 @@ urlpatterns = [
     re_path(r'^api/playerCompare$', views.playercompare_view),
     re_path(r'^api/playerPlayStyle', views.playerPlayStyle_view),
     re_path(r'^api/suggestion', views.suggestion_view),
-    
+    re_path(r'^api/matchdata', views.summonerdata),
     
     #this link for reload all data manually by calling this website
     
