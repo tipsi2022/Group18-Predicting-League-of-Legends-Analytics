@@ -106,3 +106,19 @@ def suggestion_view(request):
     
     return Response(res)
 
+@api_view(['POST'])
+def summonerdata(request):
+    
+    res = {}
+    # {"region":"na1" , "summnorname":"doublelift"}
+    if request.method == 'POST':
+        try:
+            region = request.data['region']
+            summnorname = request.data['summnorname']
+            res = getmatchdata(region, summnorname)
+        except:
+            res = {}
+
+        return Response(res)        
+    return Response(res)
+
