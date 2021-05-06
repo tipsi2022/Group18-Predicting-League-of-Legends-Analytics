@@ -14,6 +14,7 @@ import { deepOrange } from "@material-ui/core/colors";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import BarChampions from "../Components/BarChampions";
 
 const useStyles = makeStyles({
     root: {
@@ -248,6 +249,11 @@ function DisplayChampion(props) {
                                 </Card>
                             </Grid>
                         )}
+                    </Grid>
+                    <Grid container>
+                        <Grid item lg={12}>
+                            <BarChampions data={championData.stats}/>
+                        </Grid>
                     </Grid>
                 </div>
             )}
