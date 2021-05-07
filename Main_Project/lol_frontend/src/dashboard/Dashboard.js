@@ -15,7 +15,6 @@ import {
     CssBaseline,
     Button,
     Grid,
-    Paper,
     makeStyles,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -23,8 +22,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { MainListItems, SecondaryListItems } from "./listItems";
 import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
-import Chart from "../Components/Chart";
 import Champions from "../Components/Champions";
+import Items from "../Components/Items";
 import TierList from "../Components/TierList";
 import Leaderboard from "../Components/LeaderBoard";
 import HowToPlay from "../Components/HowToPlay";
@@ -36,6 +35,7 @@ import { Route, Switch, Link as RouterLink } from "react-router-dom";
 import Comparison from "../Components/Comparison";
 import DownloadApp from "../Components/DownloadApp";
 import DisplayChampion from "../Pages/DisplayChampion";
+import Home from "../Components/Home";
 
 function Copyright() {
     return (
@@ -244,17 +244,12 @@ export default function Dashboard() {
                         <Switch>
                             <Route exact path="/sign-in" component={SignIn} />
                             <Route exact path="/sign-up" component={SignUp} />
-                            <Route exact path="/">
-                                <Grid item xs={12} md={8} lg={12}>
-                                    <Paper className={fixedHeightPaper}>
-                                        <Chart />
-                                    </Paper>
-                                </Grid>
-                            </Route>
+                            <Route exact path="/" component={Home} />
                             <Route exact path="/champions" component={Champions} />
                             <Route exact path="/champions/:championName">
                                 <DisplayChampion title={title} changeTitle={changeTitle} />
                             </Route>
+                            <Route exact path="/items" component={Items} />
                             <Route exact path="/tier-list" component={TierList} />
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />
@@ -263,6 +258,7 @@ export default function Dashboard() {
                             <Route exact path="/suggestions" component={Suggestions} />
                             <Route exact path="/comparison" component={Comparison} />
                             <Route exact path="/get-app" component={DownloadApp} />
+                            
                         </Switch>
                     </Grid>
                     <Box pt={4}>
