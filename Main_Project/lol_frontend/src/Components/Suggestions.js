@@ -11,7 +11,7 @@ import {
     MenuItem,
     Select,
     TextField,
-    Typography,
+    Typography, 
 } from "@material-ui/core";
 import BarSuggesstion from "./BarSuggesstion";
 import axios from "axios"; //Uncomment this

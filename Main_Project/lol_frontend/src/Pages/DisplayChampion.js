@@ -45,7 +45,7 @@ function DisplayChampion(props) {
     useEffect(() => {
         props.changeTitle(`${championName}`);
         axios
-            .get(link)
+            .get(link)  
             .then((res) => {
                 const arrInit = Object.values(res.data);
                 const x = arrInit[3];
@@ -230,7 +230,7 @@ function DisplayChampion(props) {
                                 <Card variant="outlined" className={classes.alcenter}>
                                     <CardContent>
                                         <Typography variant="h4" color="primary">
-                                            {`How ${championName} can Help the Team !?`}
+                                            {`How does ${championName} contribute to a team?`}
                                         </Typography>
                                         <p>{championData.allytips.join("\r\n")}</p>
                                     </CardContent>
