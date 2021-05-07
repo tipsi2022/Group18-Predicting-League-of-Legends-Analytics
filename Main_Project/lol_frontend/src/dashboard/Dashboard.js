@@ -36,6 +36,7 @@ import Comparison from "../Components/Comparison";
 import DownloadApp from "../Components/DownloadApp";
 import DisplayChampion from "../Pages/DisplayChampion";
 import Home from "../Components/Home";
+import ProtectedRoutes from "../ProtectedRoutes";
 
 function Copyright() {
     return (
@@ -135,7 +136,7 @@ export default function Dashboard() {
     const classes = useStyles();
     const [title, setTitle] = useState("Dashboard");
     const [open, setOpen] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         document.title = title;
@@ -144,6 +145,11 @@ export default function Dashboard() {
     function changeTitle(newTitle) {
         return setTitle(newTitle);
     }
+
+    function authSet(flag) {
+        return setIsAuthenticated(flag);
+    }
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -241,7 +247,9 @@ export default function Dashboard() {
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
                         <Switch>
-                            <Route exact path="/sign-in" component={SignIn} />
+                            <Route exact path="/sign-in">
+                                <SignIn setFlag={authSet} component={SignIn} />
+                            </Route>
                             <Route exact path="/sign-up" component={SignUp} />
                             <Route exact path="/" component={Home} />
                             <Route exact path="/champions" component={Champions} />
@@ -252,12 +260,21 @@ export default function Dashboard() {
                             <Route exact path="/tier-list" component={TierList} />
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />
-                            <Route exact path="/profile" component={Profile} />
-                            <Route exact path="/personal-stats" component={PersonalStats} />
-                            <Route exact path="/suggestions" component={Suggestions} />
-                            <Route exact path="/comparison" component={Comparison} />
-                            <Route exact path="/get-app" component={DownloadApp} />
-                            
+                            <ProtectedRoutes exact path="/profile" component={Profile} isAuth={isAuthenticated} />
+                            <ProtectedRoutes
+                                exact
+                                path="/personal-stats"
+                                component={PersonalStats}
+                                isAuth={isAuthenticated}
+                            />
+                            <ProtectedRoutes
+                                exact
+                                path="/suggestions"
+                                component={Suggestions}
+                                isAuth={isAuthenticated}
+                            />
+                            <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
+                            <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
                         </Switch>
                     </Grid>
                     <Box pt={4}>
