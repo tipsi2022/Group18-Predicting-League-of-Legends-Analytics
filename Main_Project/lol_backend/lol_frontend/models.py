@@ -15,3 +15,9 @@ class MatchDataByGameId(models.Model):
         player8 = models.CharField(max_length = 100, default="")
         player9 = models.CharField(max_length = 100, default="")
         player10 = models.CharField(max_length = 100, default="")
+
+class Account(models.Model):
+        firstname = models.CharField(max_length = 20)
+        lastname = models.CharField(max_length = 20)
+        emailid = models.EmailField(verbose_name="email", max_length=60, unique=True)
+        password = models.CharField(max_length = 100)
