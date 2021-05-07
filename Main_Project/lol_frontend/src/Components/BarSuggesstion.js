@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 import { ResponsiveContainer } from "recharts";
 
 function BarSuggesstion(props) {
-    const size = 10; 
+    const size = 10;
     const recoData = props.data.recommand;
     const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
     const recoLabel = recoData.slice(0, size).map((x) => x[0]);
