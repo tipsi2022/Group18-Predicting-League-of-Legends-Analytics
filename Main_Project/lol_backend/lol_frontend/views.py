@@ -9,6 +9,7 @@ from rest_framework import status
 import os
 
 # for compare the diffrent summnor name
+from lol_frontend.models import Account
 from lol_frontend.functionality.playercompare import compare
 from lol_frontend.functionality.playerPlayStyle import playStyle
 from lol_frontend.functionality.leaderboardGenerate import callTogenerate
@@ -122,3 +123,62 @@ def summonerdata(request):
         return Response(res)        
     return Response(res)
 
+
+
+@api_view(['POST'])
+def registerview(request):
+    
+    res = {}
+    res['flag'] = False
+    # {"fname":"xyz" , "lname":"xyz", "email":"xyz@gmail.com", "password":"123456"}
+    if request.method == 'POST':
+        try:
+            fname = request.data['fname']
+            lname = request.data['lname']
+            email = request.data['email']
+            password = request.data['password']
+
+            print(fname , ' ' , lname, ' ' , email, ' ', password)
+            fetchdb = list(Account.objects.filter(emailid= email).values())
+            if len(fetchdb) != 0:
+                res['flag'] = False
+            else:
+                ob = Account(firstname=fname, 
+                             lastname=lname,
+                             emailid=email,
+                             password=password
+                            )
+                ob.save()
+                res['flag'] = True
+                
+        except:
+            res = {}
+            res['flag'] = False
+
+        return Response(res)        
+    return Response(res)
+
+
+
+@api_view(['POST'])
+def loginview(request):
+    
+    res = {}
+    res['flag'] = False
+    # {"email":"xyz@gmail.com", "password":"123456"}
+    if request.method == 'POST':
+        try:
+            email = request.data['email']
+            password = request.data['password']
+
+            fetchdb = list(Account.objects.filter(emailid= email, password=password).values())
+            if len(fetchdb) == 0:
+                res['flag'] = False
+            else:
+                res['flag'] = True
+        except:
+            res = {}
+            res['flag'] = False
+
+        return Response(res)        
+    return Response(res)

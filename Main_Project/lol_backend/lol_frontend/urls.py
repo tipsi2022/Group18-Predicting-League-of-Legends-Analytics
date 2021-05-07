@@ -14,6 +14,8 @@ urlpatterns = [
     
     #this link for reload all data manually by calling this website
     
-
-
+    # for login and signup
+    re_path(r'^api/auth/register', views.registerview),
+    re_path(r'^api/auth/login', views.loginview),
+    
 ]

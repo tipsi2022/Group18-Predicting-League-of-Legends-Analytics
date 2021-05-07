@@ -240,5 +240,3 @@ def generatesuggestion(region, username):
 
     return suggestion
 
-if __name__ == '__main__':
-    main(5, 'doublelift', 'na1')
