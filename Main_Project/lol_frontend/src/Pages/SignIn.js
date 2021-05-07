@@ -8,9 +8,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Link as RouterLink } from "react-router-dom";
-import GoogleLogin from "react-google-login";
+import { Link as RouterLink, Redirect } from "react-router-dom";
+// import GoogleLogin from "react-google-login";
 import master from "../Assets/master.png";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -32,16 +33,30 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
     const classes = useStyles();
     const [userDetails, setUserDetails] = useState({ email: "", password: "" });
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    };
+    // const responseGoogle = (response) => {
+    //     console.log(response);
+    // };
 
     function handleClick(e) {
         console.log(userDetails);
+        axios
+            .post("/api/auth/login", userDetails)
+            .then((res) => {
+                console.log(res);
+                if (res.data.flag === false) {
+                    alert("Email or Password Incorrect!");
+                } else {
+                    alert("Logged in successfully!");
+                    props.setFlag(true);
+                    <Redirect to="/" />;
+                    setUserDetails({ email: "", password: "" });
+                }
+            })
+            .catch((err) => console.log(err));
         e.preventDefault();
     }
 
@@ -94,7 +109,7 @@ export default function SignIn() {
                     >
                         Sign In
                     </Button>
-                    <Typography align="center" variant="h6" color="primary">
+                    {/* <Typography align="center" variant="h6" color="primary">
                         OR
                     </Typography>
                     <Typography align="center" gutterBottom m={5}>
@@ -106,7 +121,7 @@ export default function SignIn() {
                             cookiePolicy={"single_host_origin"}
                             align="center"
                         />
-                    </Typography>
+                    </Typography> */}
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">

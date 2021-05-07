@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link as RouterLink } from "react-router-dom";
-
+import axios from "axios";
 import challenger from "../Assets/challenger.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +35,25 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
     const [userDetails, setUserDetails] = useState({ fname: "", lname: "", email: "", password: "" });
+    const [conPass, setConPass] = useState("");
 
     function handleClick(e) {
-        console.log(userDetails);
+        if (userDetails.password === conPass) {
+            console.log(userDetails);
+            axios
+                .post("/api/auth/register", userDetails)
+                .then((res) => {
+                    console.log(res);
+                    if (res.data.flag === false) {
+                        alert("This email is already Registered 🚫. Please try another email");
+                    } else {
+                        alert("Registration Successful ✔");
+                    }
+                })
+                .catch((err) => console.log(err));
+        } else {
+            alert("Passwords do not match. Please try again");
+        }
         e.preventDefault();
     }
 
@@ -110,6 +126,22 @@ export default function SignUp() {
                                 value={userDetails.password}
                                 onChange={(e) => {
                                     setUserDetails({ ...userDetails, password: e.target.value });
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Confirm Password"
+                                type="password"
+                                id="conpassword"
+                                autoComplete="current-password"
+                                value={conPass}
+                                onChange={(e) => {
+                                    setConPass(e.target.value);
                                 }}
                             />
                         </Grid>
