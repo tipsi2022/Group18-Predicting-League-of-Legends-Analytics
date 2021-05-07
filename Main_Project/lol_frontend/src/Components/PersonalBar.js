@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { ResponsiveContainer } from "recharts";
 
-function PersonalDetails(props) {
+function PersonalDetails(props) { 
     const size = 10; 
     const recoData = props.data.recommand;
     const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
@@ -14,8 +14,8 @@ function PersonalDetails(props) {
     return (
         <>  
 
-
             
+
 
             
             <div style={{ width: "100%" }}>

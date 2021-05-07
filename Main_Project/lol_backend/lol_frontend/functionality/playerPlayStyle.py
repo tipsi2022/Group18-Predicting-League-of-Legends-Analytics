@@ -118,24 +118,39 @@ def playStyle(region, username):
 
     champ = list(userChampionsList.keys())
     # for mapping champion id to champion name
-    champname = [mapper[i] for i in champ]
+    champname = []
+    for i in champ:
+        try:
+            champname.append(mapper[i])
+        except:
+            champname.append('Lol')
+    # champname = [mapper[i] for i in champ]
     champMatch = list(userChampionsList.values())
 
-    all_data['champion'] = champname
-    all_data['championCnt'] = champMatch
-
+    champdata = []
+    for i in range(len(champname)):
+        champdata.append([champname[i], champMatch[i]])
+    champdata = sorted(champdata, key = lambda x: x[1], reverse=True)
 
     lane = list(laneList.keys())
     laneCnt = list(laneList.values())
 
-    all_data['lane'] = lane
-    all_data['laneCnt'] = laneCnt
+    lanedata = []
+    for i in range(len(lane)):
+        lanedata.append([lane[i], laneCnt[i]])
+    lanedata = sorted(lanedata, key = lambda x: x[1], reverse=True)
 
     role = list(roleList.keys())
     roleCnt = list(roleList.values())
 
-    all_data['role'] = role
-    all_data['roleCnt'] = roleCnt
+    roledata = []
+    for i in range(len(role)):
+        roledata.append([role[i], roleCnt[i]])
+    roledata = sorted(roledata, key = lambda x: x[1], reverse=True)
+
+    
+    all_data['champion'] = champdata
+    all_data['role'] = roledata
+    all_data['lane'] = lanedata
 
     return all_data
-

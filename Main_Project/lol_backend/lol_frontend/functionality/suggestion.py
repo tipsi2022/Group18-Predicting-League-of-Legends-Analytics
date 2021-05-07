@@ -111,7 +111,7 @@ def getRecommendations(userChampionsList, AccountId, all_region_data):
         for id, player_matches in all_region_data[i].items():
 
             if id != AccountId:
-                x = []
+                x = [] 
                 y = []
                 for champion in userChampionsList[AccountId].keys():  #champion in int format
                     if str(champion) in player_matches.keys(): # in player_matches champion in str format

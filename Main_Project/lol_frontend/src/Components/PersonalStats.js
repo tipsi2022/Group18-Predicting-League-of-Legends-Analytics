@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Bar } from "react-chartjs-2";
 // import Link from "@material-ui/core/Link";
 // import { makeStyles } from "@material-ui/core/styles";
 // import chartData from "../Data/chartData";
@@ -12,7 +13,7 @@ import {
     TextField,
     Typography,
 } from "@material-ui/core";
-import PersonalDetails from "./PersonalDetails";
+import PersonalDetails from "./PersonalBar";
 import axios from "axios"; //Uncomment this
 
 const useStyles = makeStyles({
@@ -42,6 +43,7 @@ export default function PersonalStats() {
     const [sumName, setSumName] = useState("");
     const [fields, setFields] = useState({ summonername: "", region: "" });
     const [chartData, setChartData] = useState(null);
+    const [styleData, setStyleData] = useState(null);
 
     const classes = useStyles();
 
@@ -51,12 +53,21 @@ export default function PersonalStats() {
         setFields({ summonername: sumName, region: reg });
         axios
             .post("/api/suggestion", { region: reg, summnorname: sumName })
-            .then((res) => {
+            .then((res) => { 
                 console.log(res);
                 setChartData(res.data);
             })
             .catch((err) => console.log(err));
-        console.log(chartData);
+            console.log(chartData);
+
+        axios
+            .post("/api/playerPlayStyle", { region: reg, summnorname: sumName })
+            .then((res) => { 
+                console.log(res);
+                setStyleData(res.data);
+            })
+            .catch((err) => console.log(err));
+            console.log(styleData);
     }
 
     return (
@@ -112,7 +123,12 @@ export default function PersonalStats() {
                 <>
                     
                     <PersonalDetails data={chartData} />
+
+                    
+
                 </>
+                
+
             )}
         </div>
     );
