@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
 // import Link from "@material-ui/core/Link";
 // import { makeStyles } from "@material-ui/core/styles";
 // import chartData from "../Data/chartData";
@@ -57,7 +56,6 @@ export default function Suggestions() {
                 setChartData(res.data);
             })
             .catch((err) => console.log(err));
-        console.log(chartData);
     }
 
     return (
