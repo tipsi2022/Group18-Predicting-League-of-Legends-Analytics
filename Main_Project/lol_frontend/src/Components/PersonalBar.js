@@ -5,8 +5,8 @@ import { ResponsiveContainer } from "recharts";
 function PersonalDetails(props) { 
     const size = 10; 
     const recoData = props.data.recommand;
-    const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
-    const recoLabel = recoData.slice(0, size).map((x) => x[0]);
+    // const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
+    // const recoLabel = recoData.slice(0, size).map((x) => x[0]);
 
     const usedData = props.data.used;
     const displayUsed = usedData.slice(0, size).map((x) => x[1] * 100);

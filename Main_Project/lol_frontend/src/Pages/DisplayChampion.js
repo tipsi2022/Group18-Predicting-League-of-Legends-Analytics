@@ -57,7 +57,7 @@ function DisplayChampion(props) {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [championName, link, props]);
 
     const classes = useStyles();
 
