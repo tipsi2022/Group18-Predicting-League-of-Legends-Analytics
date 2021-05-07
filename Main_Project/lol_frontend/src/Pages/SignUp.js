@@ -35,9 +35,15 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
     const [userDetails, setUserDetails] = useState({ fname: "", lname: "", email: "", password: "" });
+    const [conPass, setConPass] = useState("");
 
     function handleClick(e) {
-        console.log(userDetails);
+        if (userDetails.password === conPass) {
+            console.log(userDetails);
+            // POST REQ HERE
+        } else {
+            alert("Passwords do not match. Please try again");
+        }
         e.preventDefault();
     }
 
@@ -110,6 +116,22 @@ export default function SignUp() {
                                 value={userDetails.password}
                                 onChange={(e) => {
                                     setUserDetails({ ...userDetails, password: e.target.value });
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Confirm Password"
+                                type="password"
+                                id="conpassword"
+                                autoComplete="current-password"
+                                value={conPass}
+                                onChange={(e) => {
+                                    setConPass(e.target.value);
                                 }}
                             />
                         </Grid>
