@@ -6,7 +6,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import data from "../Data/leaderboardData";
 import { Button, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import InputLabel from "@material-ui/core/InputLabel";

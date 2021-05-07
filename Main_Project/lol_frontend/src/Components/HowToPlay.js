@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         textAlign: "center",
     },
     fsiz: {
-        fontSize: "18px",
+        fontSize: "15px",
     },
 });
 
@@ -19,10 +19,13 @@ export default function HowToPlay() {
         <React.Fragment>
             <Grid container justify="space-around" spacing={2}>
                 <Grid item lg={12}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <p>
-                            League of Legends is a multiplayer online battle arena. It’s been one of the most popular
-                            games of all time and currently one of the biggest esports.
+                            <b>
+                                <span style={{ fontSize: "23px", color: "#2874A6" }}>League of Legends</span>
+                            </b>{" "}
+                            is a multiplayer online battle arena. It’s been one of the most popular games of all time
+                            and currently one of the biggest esports.
                         </p>
                         <p>
                             In a standard game of League, ten players are split into two teams of five and battle it out
@@ -32,7 +35,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1>What is a champion?</h1>
                         <p>All ten players in a League of Legends match controls a single champion.</p>
                         <p>There are currently over 140 champions with new ones being continuously added over time.</p>
@@ -49,7 +52,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1> How do you win?</h1>
                         <p>The ultimate goal of LoL is to destroy the other team’s base, but it’s not easy.</p>
                         <p>Your enemies will do everything they can to kill you and destroy your base.</p>
@@ -75,7 +78,7 @@ export default function HowToPlay() {
                 </Grid>
 
                 <Grid item lg={10} className={classes.cent}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1> What is Summoner’s Rift?</h1>
                         <p>
                             This is the standard map that the professionals play on and it’s where you’d be if you were
@@ -93,7 +96,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1> Here are the basics of the Summoner’s Rift map:</h1>
                         <p>
                             There are two teams of five players: the blue team (base at bottom left corner) and the red
@@ -113,7 +116,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <img
                             src="https://mobalytics.gg/wp-content/uploads/2019/06/Nexus-and-turrets.jpg"
                             height="320px"
@@ -122,7 +125,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={7}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <img
                             src="https://mobalytics.gg/wp-content/uploads/2019/06/Super-minions.jpg"
                             alt="minion"
@@ -131,7 +134,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={5}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1>Turrets and Inhibitors</h1>
                         <p>
                             Destroying turrets and other structures called inhibitors rewards players with gold and
@@ -147,7 +150,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={5}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1>The Fountain and Shop</h1>
                         <p>
                             At the beginning of each game, you’ll begin at your fountain. You’ll revisit your fountain
@@ -161,16 +164,16 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={7}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <img
                             src="https://mobalytics.gg/wp-content/uploads/2019/06/Fountain-and-shop.jpg"
                             alt="shop"
-                            height="320"
+                            height="300"
                         ></img>
                     </div>
                 </Grid>
                 <Grid item lg={10} className={classes.cent}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1> LoL Champion Basics</h1>
                         <p>
                             Now that we understand the basics of the map, let’s get back to talking about champions.
@@ -201,7 +204,7 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <h1> Champion Stats</h1>
                         <p>
                             A major aspect that sets champions apart is the distribution of their stats. Stats represent
@@ -216,36 +219,34 @@ export default function HowToPlay() {
                     </div>
                 </Grid>
                 <Grid item lg={6}>
-                    <div classname={classes.fsiz}>
+                    <div className={classes.fsiz}>
                         <img
                             src="https://mobalytics.gg/wp-content/uploads/2019/06/Champ-stats-Ashe.jpg"
                             alt="stats demo"
-                            height="100px"
+                            height="80px"
                         ></img>
                     </div>
                 </Grid>
 
-                <Grid item lg={10} className={classes.cent}>
-                    <div classname={classes.fsiz}>
-                        <h1>The Three Phases and Scaling</h1>
-                        <p>
-                            These concepts are leaning more towards being intermediate than beginner, but we want to
-                            quickly go over them since you’ll likely hear the terminology of the three phases: early
-                            game, mid game, and late game.
-                        </p>
-                        <p>
-                            The phases aren’t set in stone and act more as guidelines as every game is different in its
-                            own way, but they tend to hold true to regarding how the majority of games turn out:
-                        </p>
-                    </div>
+                <Grid item lg={10} className={(classes.cent, classes.fsiz)}>
+                    <h1>The Three Phases and Scaling</h1>
+                    <p>
+                        These concepts are leaning more towards being intermediate than beginner, but we want to quickly
+                        go over them since you’ll likely hear the terminology of the three phases: early game, mid game,
+                        and late game.
+                    </p>
+                    <p>
+                        The phases aren’t set in stone and act more as guidelines as every game is different in its own
+                        way, but they tend to hold true to regarding how the majority of games turn out:
+                    </p>
                 </Grid>
 
-                <Grid item lg={4}>
+                <Grid item lg={4} className={classes.fsiz}>
                     <h2>Early game (the first 15 minutes)</h2>
                     <p>• This is when all the turrets are up and everyone is in their lane except for the junglers.</p>
                     <p>• Until the jungler arrives, top and mid will mostly be 1v1 and bot lane will mostly be 2v2.</p>
                 </Grid>
-                <Grid item lg={4}>
+                <Grid item lg={4} className={classes.fsiz}>
                     <h2>Mid game (15 to 30 minutes)</h2>
                     <p>• At around 15 minutes, or when the first turrets begin to be destroyed, the mid game begins.</p>
                     <p>
@@ -254,7 +255,7 @@ export default function HowToPlay() {
                         dragons or Rift Herald.
                     </p>
                 </Grid>
-                <Grid item lg={4}>
+                <Grid item lg={4} className={classes.fsiz}>
                     <h2>Late game (after 30 minutes)</h2>
                     <p>
                         • The mid game usually ends and around the 30 minute mark when all of the first turrets in the
@@ -265,7 +266,7 @@ export default function HowToPlay() {
                         large teamfights around Baron and Elder Dragons.
                     </p>
                 </Grid>
-                <Grid item lg={10} className={classes.cent}>
+                <Grid item lg={10} className={`${classes.fsiz} ${classes.cent}`}>
                     <p>
                         So why are the three phases important? In League of Legends, every champion is designed to be
                         good during a certain time period. Some champions are designed to be strong in the early game
@@ -279,7 +280,7 @@ export default function HowToPlay() {
                         stat ratios as they buy more items. Let’s cover a few examples.
                     </p>
                 </Grid>
-                <Grid item lg={11} className={classes.cent}>
+                <Grid item lg={11} className={`${classes.fsiz} ${classes.cent}`}>
                     <h1> How these phases actually depends upon Champion!?</h1>
                     <h2>Blitzcrank: Early game power spike</h2>
                     <img

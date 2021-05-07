@@ -7,7 +7,6 @@ import {
     CardMedia,
     CardContent,
     CardActions,
-    CardActionArea,
     Card,
     Grid,
     makeStyles,
@@ -16,14 +15,9 @@ import {
 // import championData from "../Data/allChampionsData";
 
 const useStyles = makeStyles({
-    
-
-    
     root: {
         background: "#f2e4fd",
     },
-
-    darkGrey: {},
 });
 
 
@@ -49,7 +43,7 @@ export default function Champions() {
                     itemData.map((props) => {
                         return (
                             <Grid item lg={3} md={4} sm={11} key={props.id}>
-                                <Card>
+                                <Card className={classes.root}>
                 
                                     <CardMedia
                                         component="img"
