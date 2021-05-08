@@ -67,7 +67,7 @@ function PersonalDetails(props) {
                                     {`${elem[0]}`}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {`Used in ${elem[1]*100}% of recent games`}
+                                    {`Used in ${elem[1].toFixed(2)*100}% of recent games`}
                                 </Typography>
                                 </Box>
                             </CardContent>

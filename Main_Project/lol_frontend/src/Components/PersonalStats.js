@@ -11,6 +11,8 @@ import {
     Select,
     TextField,
     Typography,
+    Card,
+    CardContent,
     Box,
 } from "@material-ui/core";
 import PersonalDetails from "./PersonalBar";
@@ -49,6 +51,7 @@ export default function PersonalStats() {
     const [chartData, setChartData] = useState(null);
     const [styleData, setStyleData] = useState(null);
     const [leagueData, setLeagueData] = useState(null);
+    const [flag, setFlag] = useState(false);
 
     const classes = useStyles();
 
@@ -56,8 +59,9 @@ export default function PersonalStats() {
         console.log(sumName);
         console.log(reg);
         setFields({ summonername: sumName, region: reg });
+        // setFlag(false)
         axios
-            .post("/api/suggestion", { region: reg, summnorname: sumName })
+            .post("http://127.0.0.1:8000/api/suggestion", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setChartData(res.data);
@@ -66,7 +70,7 @@ export default function PersonalStats() {
             console.log(chartData);
 
         axios
-            .post("/api/playerPlayStyle", { region: reg, summnorname: sumName })
+            .post("http://127.0.0.1:8000/api/playerPlayStyle", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setStyleData(res.data);
@@ -75,16 +79,28 @@ export default function PersonalStats() {
             console.log(styleData);
         
         axios
-            .post("/api/playerCompare", { region: [reg], player: [sumName] })
+            .post("http://127.0.0.1:8000/api/playerCompare", { region: [reg], player: [sumName] })
             .then((res) => { 
                 console.log(res);
                 const x = Object.values(res.data)
                 const final = x[0]
                 const finalvals = Object.values(final)
-                setLeagueData(finalvals[9][0]);
+                // console.log(finalvals[9].length)
+                if(finalvals[9].length===0)
+                {
+                    setFlag(true);
+                    // console.log('yes')
+                }
+                else
+                {
+                    setFlag(false)
+                    setLeagueData(finalvals[9][0]);
+                    // console.log(leagueData)
+                    // console.log('no')
+                }
             })
             .catch((err) => console.log(err));
-            console.log(leagueData);
+            
     }
 
     return (
@@ -136,7 +152,7 @@ export default function PersonalStats() {
                 </Button>
             </Typography>
 
-            {fields.region !== "" && fields.summonername !== "" && chartData !== null && styleData !== null && leagueData !== null && (
+            {fields.region !== "" && fields.summonername !== "" && chartData !== null && styleData !== null &&  (
                 <>
                     
                     <Box textAlign='center' p={3}>
@@ -156,11 +172,10 @@ export default function PersonalStats() {
                         <PlayStyle data = {styleData} />
                     </Box>
 
-                    <Box textAlign='Center' p = {3}>
-                        
+                    {/* {console.log(flag)} */}
+                    {!flag && leagueData !== null &&
                         <PersonalWL data = {leagueData} />
-                    </Box>
-
+                    } 
                 </>
                 
 

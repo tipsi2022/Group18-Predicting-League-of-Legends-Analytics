@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Grid, makeStyles, Paper, Typography, Box } from "@material-ui/core";
 import React from "react";
 import logop from "../Assets/provisional.png";
 import logob from "../Assets/bronze.png";
@@ -49,39 +49,54 @@ function Home() {
                     <img src={logob} alt="logo" height="100px"></img>
                 </Grid>
                 <Grid item lg={12}>
-                    <Typography variant="h3" className={classes.title}>
-                        Welcome To League of Legends Analytics
+                    <Box textAlign='Center' p = {3}>
+                    <Typography variant="h2" className={classes.title}>
+                        Welcome To League of Legends Analytics!
                     </Typography>
+                    </Box>
                 </Grid>
                 <Grid item lg={8}>
+                    <Box textAlign='Center' p = {3}>
                     <Typography variant="h4" className={classes.subt}>
-                        Your One Stop Solution to Learn and Excel the skills to play LOL!
+                        Your One Stop Solution to learn and excel at the world's most popular MOBA!
                     </Typography>
+                    </Box>
                 </Grid>
             </Grid>
             <Grid container justify="space-evenly" className={classes.cont} spacing={2}>
                 <Grid item lg={6}>
                     <Paper className={classes.pad}>
+                        <Box textAlign='Center' p = {3}>
                         <Typography variant="h5" className={classes.ter}>
                             Why to have such an app?
                         </Typography>
+                        </Box>
+                        <Box textAlign='Center' p = {3}>
+
+                        
                         <Typography variant="h6" color="textSecondary">
-                            LoL has a steep learning curve. Shit gets real quickly
+                            League of Legends is one of the most difficult games to master, especially with all the Champions, Items and strategies it has, our app simply helps you keep track of your playstyle alongwith some custom tailored suggestions!
                         </Typography>
+                        </Box>
                     </Paper>
                 </Grid>
                 <Grid item lg={6}>
                     <Paper Paper className={classes.pad}>
+                        <Box textAlign='Center' p = {3}>
                         <Typography variant="h5" className={classes.ter}>
-                            What we have for you!
+                            What do we have for you?
                         </Typography>
+                        </Box>
+                        <Box textAlign='Center' p = {3}>
                         <Typography variant="h6" color="textSecondary">
-                            All the info you need to play LOL
+                            Information about champions, stats about players, awesome suggestions and comparisons!
                         </Typography>
+                        </Box>
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container justify="space-evenly" className={classes.cont} spacing={2}>
+
                 <Typography variant="h4" color="primary">
                     Explore the app <b>Now!</b>
                 </Typography>

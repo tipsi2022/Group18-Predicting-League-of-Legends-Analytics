@@ -53,10 +53,14 @@ export default function Comparison() {
     const [play2, setPlay2] = useState();
     const [play1det, setPlay1det] = useState(null);
     const [play2det, setPlay2det] = useState(null);
+    const [flag1, setFlag1] = useState(false);
+    const [flag2, setFlag2] = useState(false);
 
     function handleSubmit() {
+
+        
         axios
-            .post("/api/playerCompare", { region: [reg1, reg2], player: [play1, play2] })
+            .post("http://127.0.0.1:8000/api/playerCompare", { region: [reg1, reg2], player: [play1, play2] })
             .then((res) => {
                 console.log(res);
                 
@@ -68,8 +72,24 @@ export default function Comparison() {
                 const finalvals1 = Object.values(final1)
                 const finalvals2 = Object.values(final2)
                 // setLeagueData(finalvals[9][0]);
-
-
+                if(finalvals1[9].length===0)
+                {
+                    setFlag1(true);
+                    // console.log('yes')
+                }
+                else
+                {
+                    setFlag1(false);
+                }
+                if(finalvals2[9].length===0)
+                {
+                    setFlag2(true);
+                    // console.log('yes')
+                }
+                else
+                {
+                    setFlag2(false);
+                }
 
                 console.log(finalvals1);
                 setPlay1det(finalvals1);
@@ -78,6 +98,8 @@ export default function Comparison() {
             })
             .catch((err) => console.log(err));
         // POST request here
+
+        
     }
     const classes = useStyles();
     return (
@@ -262,7 +284,7 @@ export default function Comparison() {
                             </Card>
 
 
-
+                            {!flag1 && play1det[9][0] !== null &&
                             <Box textAlign='center' p={3}>
                             
                                 <Typography variant='h5'>
@@ -272,7 +294,8 @@ export default function Comparison() {
                             
 
                             </Box>
-
+                            }
+                            {!flag1 && play1det[9][0] !== null &&
                             <Box border={1}>
                             <Card>
                             
@@ -318,7 +341,7 @@ export default function Comparison() {
                             <CardContent>
                                 <Box textAlign = "center">
                                 <Typography gutterBottom variant="subtitle2" component="h3">
-                                    {`Tier: ${play1det[9][0].tier}`} 
+                                    {`Tier: ${play1det[9][0].tier} ${play1det[9][0].rank}`} 
                                 </Typography>
                                 
                                 </Box>
@@ -326,21 +349,10 @@ export default function Comparison() {
                             
                             </Card>
 
-                            <Card>
                             
-                            <CardContent>
-                                <Box textAlign = "center">
-                                <Typography gutterBottom variant="subtitle2" component="h3">
-                                    {`Rank: ${play1det[9][0].rank}`} 
-                                </Typography>
-                                
-                                </Box>
-                            </CardContent>
-                            
-                            </Card>
 
                             </Box>
-
+                            }
 
 
                         </Grid>
@@ -439,7 +451,7 @@ export default function Comparison() {
                             
                             </Card>
 
-
+                            {!flag2 && play2det[9][0] !== null &&
                             <Box textAlign='center' p={3}>
                             
                                 <Typography variant='h5'>
@@ -449,7 +461,9 @@ export default function Comparison() {
                             
 
                             </Box>
-
+                            }
+                                                        
+                            {!flag2 && play2det[9][0] !== null &&
                             <Box border={1}>
 
                             <Card>
@@ -497,7 +511,7 @@ export default function Comparison() {
                             <CardContent>
                                 <Box textAlign = "center">
                                 <Typography gutterBottom variant="subtitle2" component="h3">
-                                    {`Tier: ${play2det[9][0].tier}`} 
+                                    {`Tier: ${play2det[9][0].tier} ${play2det[9][0].rank}`} 
                                 </Typography>
                                 
                                 </Box>
@@ -505,20 +519,9 @@ export default function Comparison() {
                             
                             </Card>
 
-                            <Card>
                             
-                            <CardContent>
-                                <Box textAlign = "center">
-                                <Typography gutterBottom variant="subtitle2" component="h3">
-                                    {`Rank: ${play2det[9][0].rank}`} 
-                                </Typography>
-                                
-                                </Box>
-                            </CardContent>
-                            
-                            </Card>
                             </Box>
-
+                            } 
 
                         </Grid>
                     </Grid>

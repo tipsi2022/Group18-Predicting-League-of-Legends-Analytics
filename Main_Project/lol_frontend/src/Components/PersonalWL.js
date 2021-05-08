@@ -46,21 +46,13 @@ function PersonalWL(props) {
                                 <CardContent>
                                     <Box textAlign="center">
                                         <Typography gutterBottom variant="subtitle2" component="h3">
-                                            {`Tier: ${props.data.tier}`}
+                                            {`Tier: ${props.data.tier} ${props.data.rank}`}
                                         </Typography>
                                     </Box>
                                 </CardContent>
                             </Card>
 
-                            <Card>
-                                <CardContent>
-                                    <Box textAlign="center">
-                                        <Typography gutterBottom variant="subtitle2" component="h3">
-                                            {`Rank: ${props.data.rank}`}
-                                        </Typography>
-                                    </Box>
-                                </CardContent>
-                            </Card>
+                            
                         </Box>
                     </Grid>
                 </Grid>
