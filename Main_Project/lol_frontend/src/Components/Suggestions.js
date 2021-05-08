@@ -10,7 +10,7 @@ import {
     MenuItem,
     Select,
     TextField,
-    Typography, 
+    Typography,
 } from "@material-ui/core";
 import BarSuggesstion from "./BarSuggesstion";
 import axios from "axios"; //Uncomment this
@@ -109,7 +109,7 @@ export default function Suggestions() {
 
             {fields.region !== "" && fields.summonername !== "" && chartData !== null && (
                 <>
-                    <Typography className={classes.root}>Here is Suggesstions</Typography>
+                    <Typography className={classes.root}>Suggesstions</Typography>
                     <BarSuggesstion data={chartData} />
                 </>
             )}

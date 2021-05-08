@@ -150,7 +150,7 @@ export default function BasicTable() {
                                         <TableCell align="center">{x[1]}</TableCell>
                                         <TableCell align="center">{x[2]}</TableCell>
                                         <TableCell align="center">{x[3]}</TableCell>
-                                        <TableCell align="center">{x[4]} %</TableCell>
+                                        <TableCell align="center">{x[4].toFixed(2)} %</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

@@ -10,7 +10,7 @@ function BarSuggesstion(props) {
 
     const usedData = props.data.used;
     const displayUsed = usedData.slice(0, size).map((x) => x[1] * 100);
-    const usedLabel = recoData.slice(0, size).map((x) => x[0]);
+    const usedLabel = usedData.slice(0, size).map((x) => x[0]);
     return (
         <>
             <div style={{ width: "100%" }}>
