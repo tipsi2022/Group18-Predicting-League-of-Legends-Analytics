@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.contrib.auth.hashers import make_password, check_password
 
 #FOR USE of rest_framework
 from rest_framework.response import Response
@@ -138,8 +139,8 @@ def registerview(request):
             email = request.data['email']
             password = request.data['password']
 
-            print(fname , ' ' , lname, ' ' , email, ' ', password)
             fetchdb = list(Account.objects.filter(emailid= email).values())
+            password = make_password(password)
             if len(fetchdb) != 0:
                 res['flag'] = False
             else:
@@ -149,15 +150,14 @@ def registerview(request):
                              password=password
                             )
                 ob.save()
-                res['flag'] = True
-                
+                res['flag'] = True   
+        
         except:
             res = {}
             res['flag'] = False
 
         return Response(res)        
     return Response(res)
-
 
 
 @api_view(['POST'])
@@ -170,12 +170,15 @@ def loginview(request):
         try:
             email = request.data['email']
             password = request.data['password']
-
-            fetchdb = list(Account.objects.filter(emailid= email, password=password).values())
+            fetchdb = list(Account.objects.filter(emailid= email).values())
             if len(fetchdb) == 0:
                 res['flag'] = False
             else:
-                res['flag'] = True
+                encoded = fetchdb[0]['password']
+                if check_password(password, encoded):
+                    res['flag'] = True
+                else:
+                    res['flag'] = False
         except:
             res = {}
             res['flag'] = False
