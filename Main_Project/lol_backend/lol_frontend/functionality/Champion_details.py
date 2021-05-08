@@ -1,7 +1,5 @@
 import requests,json
 import csv
-
-
 def pick_ban(match_dict,id,v):
     k = 0
     json_arr=[]
@@ -24,8 +22,9 @@ def pick_ban(match_dict,id,v):
         f = {
             "name": v[k],
             "id": i,
-            "pick": "{:.2f}".format((pick/5248)*100),
-            "ban": "{:.2f}".format((ban/5248)*100)
+            "pick": "{:.2f}".format((pick/7406)*100),
+            "ban": "{:.2f}".format((ban/7406)*100),
+            "total_Matches": (pick+ban)*100
         }
         k+=1
         json_arr.append(f)
@@ -33,6 +32,7 @@ def pick_ban(match_dict,id,v):
             json.dump(json_arr, outfile)
             print("done")
 
+    #print(type(json_arr))
 
 
 def csv_f():
