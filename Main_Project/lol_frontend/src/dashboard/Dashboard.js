@@ -266,8 +266,8 @@ export default function Dashboard() {
                             />
                             <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
                             {/* <Route exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> */}
-                            {/* <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} /> */}
-                            <Route exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
+                            <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
+                            {/* <Route exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} /> */}
                         </Switch>
                     </Grid>
                     <Box pt={4}>
