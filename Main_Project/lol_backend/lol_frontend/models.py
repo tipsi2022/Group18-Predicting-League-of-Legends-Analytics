@@ -21,3 +21,10 @@ class Account(models.Model):
         lastname = models.CharField(max_length = 20)
         emailid = models.EmailField(verbose_name="email", max_length=60, unique=True)
         password = models.CharField(max_length = 100)
+
+class summonerDetails(models.Model):
+        summonername = models.CharField(max_length=30)
+        region = models.CharField(max_length = 10,  default="br1")
+        summonerid = models.CharField(max_length=60)
+        accountid = models.CharField(max_length=60)
+        
