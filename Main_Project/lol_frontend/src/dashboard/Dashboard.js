@@ -27,7 +27,7 @@ import Items from "../Components/Items";
 import TierList from "../Components/TierList";
 import Leaderboard from "../Components/LeaderBoard";
 import HowToPlay from "../Components/HowToPlay";
-import Profile from "../Components/Profile";
+
 import PersonalStats from "../Components/PersonalStats";
 import Suggestions from "../Components/Suggestions";
 import { ExitToApp, Person, PersonAdd } from "@material-ui/icons";
@@ -200,16 +200,7 @@ export default function Dashboard() {
                     )}
                     {isAuthenticated && (
                         <ButtonGroup className={classes.root} size="large" color="default" variant="contained">
-                            <Button
-                                startIcon={<Person />}
-                                component={RouterLink}
-                                to="/profile"
-                                onClick={() => {
-                                    setTitle("Profile");
-                                }}
-                            >
-                                Profile
-                            </Button>
+                            
                             <Button
                                 startIcon={<ExitToApp />}
                                 component={RouterLink}
@@ -260,7 +251,7 @@ export default function Dashboard() {
                             <Route exact path="/tier-list" component={TierList} />
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />
-                            <ProtectedRoutes exact path="/profile" component={Profile} isAuth={isAuthenticated} />
+                            
                             <ProtectedRoutes
                                 exact
                                 path="/personal-stats"
@@ -274,8 +265,8 @@ export default function Dashboard() {
                                 component={Suggestions}
                                 isAuth={isAuthenticated}
                             />
-                            {/* <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />  */}
-                            <Route exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
+                            <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> 
+                            {/* <Route exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> */}
                             <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
                         </Switch>
                     </Grid>

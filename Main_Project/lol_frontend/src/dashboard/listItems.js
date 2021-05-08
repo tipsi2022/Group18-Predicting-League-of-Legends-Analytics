@@ -96,17 +96,7 @@ export function SecondaryListItems(props) {
   return (
     <div>
       <ListSubheader inset>Player Details</ListSubheader>
-      <ListItem
-        button
-        component={RouterLink}
-        to="/profile"
-        onClick={() => props.changeTitle("Your Profile")}
-      >
-        <ListItemIcon>
-          <Person />
-        </ListItemIcon>
-        <ListItemText primary="Your Profile" />
-      </ListItem>
+      
       <ListItem
         button
         component={RouterLink}

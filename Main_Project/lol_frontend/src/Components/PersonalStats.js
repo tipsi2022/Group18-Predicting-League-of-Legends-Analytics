@@ -143,7 +143,7 @@ export default function PersonalStats() {
                 </Button>
             </Typography>
 
-            {fields.region !== "" && fields.summonername !== "" && chartData !== null && (
+            {fields.region !== "" && fields.summonername !== "" && chartData !== null && styleData !== null && leagueData !== null && (
                 <>
                     
                     <Box textAlign='center' p={3}>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import Link from "@material-ui/core/Link";
 // import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { Link as RouterLink } from "react-router-dom";
 import {
     Button,
     ButtonGroup,
@@ -11,14 +12,25 @@ import {
     makeStyles,
     MenuItem,
     Select,
+    Box,
+    Card,
+    CardMedia,
+    CardContent,
+    CardActionArea,
     TextField,
 } from "@material-ui/core";
 import axios from "axios";
+import { borders } from '@material-ui/system'
+import PersonalWL from "./PersonalWL"
 
 const useStyles = makeStyles({
     root: {
         margin: 10,
         padding: 5,
+        background: "#db8762",
+    },
+    root2: {
+        background: "#83c4ef"
     },
     table: {
         minWidth: "100%",
@@ -31,6 +43,7 @@ const useStyles = makeStyles({
     selectEmpty: {
         // marginTop: theme.spacing(2),
     },
+    
 });
 
 export default function Comparison() {
@@ -43,15 +56,25 @@ export default function Comparison() {
 
     function handleSubmit() {
         axios
-            .post("http://127.0.0.1:8000/api/playerCompare", { region: [reg1, reg2], player: [play1, play2] })
+            .post("/api/playerCompare", { region: [reg1, reg2], player: [play1, play2] })
             .then((res) => {
                 console.log(res);
-
+                
                 const x = Object.values(res.data);
-                console.log(x[0]);
-                setPlay1det(x[0]);
-                console.log(x[1]);
-                setPlay2det(x[1]);
+
+                
+                const final1 = x[0]
+                const final2 = x[1]
+                const finalvals1 = Object.values(final1)
+                const finalvals2 = Object.values(final2)
+                // setLeagueData(finalvals[9][0]);
+
+
+
+                console.log(finalvals1);
+                setPlay1det(finalvals1);
+                console.log(finalvals2);
+                setPlay2det(finalvals2);
             })
             .catch((err) => console.log(err));
         // POST request here
@@ -72,7 +95,7 @@ export default function Comparison() {
                             onChange={(e) => setPlay1(e.target.value)}
                             autoFocus
                         />
-                    </FormControl>
+                  </FormControl>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="region select">Region</InputLabel>
                         <Select
@@ -145,10 +168,358 @@ export default function Comparison() {
                 <>
                     <Grid container justify="space-evenly">
                         <Grid item lg={6}>
-                            <Typography>{play1}</Typography>
+                            <Box textAlign='center' p={3}>
+                            <Button variant="outlined" color="secondary" disableElevation>
+                                <Typography variant='h4'>
+                                    {`${play1}`}
+
+                                </Typography>
+                            
+                            </Button>
+                            </Box>
+
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Top Champion
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <CardActionArea component={RouterLink} to={`/champions/${play1det[2].replace(/\s+/g,'')}`}>
+                            <Card
+                                className={classes.root}
+                            >
+                            <CardMedia
+                                component="img"
+                                alt="Champion Pic"
+                                height="100"
+                                
+                                image={`http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/${play1det[2].replace(/\s+/g,'')}.png`}
+                                title="Champion"
+                            />
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {`${play1det[2]}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                            </CardActionArea>
+                            
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Preferred Lane
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Card
+                                className={classes.root2}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${play1det[5]}`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Preferred Role
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Card
+                                className={classes.root2}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${play1det[7]}`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Match Statistics
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Box border={1}>
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`League Points: ${play1det[9][0].leaguePoints}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Wins: ${play1det[9][0].wins}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Losses: ${play1det[9][0].losses}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Tier: ${play1det[9][0].tier}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Rank: ${play1det[9][0].rank}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            </Box>
+
+
+
                         </Grid>
                         <Grid item lg={6}>
-                            <Typography>{play2}</Typography>
+                            <Box textAlign='center' p={3}>
+                            <Button variant="outlined" color="secondary" disableElevation>
+                                <Typography variant='h4'>
+                                    {`${play2}`}
+
+                                </Typography>
+                            
+                            </Button>
+                            </Box>
+
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Top Champion
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <CardActionArea component={RouterLink} to={`/champions/${play2det[2].replace(/\s+/g,'')}`}>
+                            <Card
+                                className={classes.root}
+                            >
+                            <CardMedia
+                                component="img"
+                                alt="Champion Pic"
+                                height="100"
+                                
+                                image={`http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/${play2det[2].replace(/\s+/g,'')}.png`}
+                                title="Champion"
+                            />
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {`${play2det[2]}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                            </CardActionArea>
+                            
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Preferred Lane
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Card
+                                className={classes.root2}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${play2det[5]}`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Preferred Role
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Card
+                                className={classes.root2}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${play2det[7]}`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+
+                            <Box textAlign='center' p={3}>
+                            
+                                <Typography variant='h5'>
+                                    Match Statistics
+
+                                </Typography>
+                            
+
+                            </Box>
+
+                            <Box border={1}>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`League Points: ${play2det[9][0].leaguePoints}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Wins: ${play2det[9][0].wins}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Losses: ${play2det[9][0].losses}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Tier: ${play2det[9][0].tier}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Rank: ${play2det[9][0].rank}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                            </Box>
+
+
                         </Grid>
                     </Grid>
                 </>
