@@ -261,19 +261,22 @@ export default function Dashboard() {
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />
                             <ProtectedRoutes exact path="/profile" component={Profile} isAuth={isAuthenticated} />
-                            <ProtectedRoutes
+                            {/* <ProtectedRoutes
                                 exact
                                 path="/personal-stats"
                                 component={PersonalStats}
                                 isAuth={isAuthenticated}
-                            />
-                            <ProtectedRoutes
+                            /> */}
+                            <Route exact path="/personal-stats" component={PersonalStats} />
+                            <Route exact path="/suggestions" component={Suggestions} />
+                            {/* <ProtectedRoutes
                                 exact
                                 path="/suggestions"
                                 component={Suggestions}
                                 isAuth={isAuthenticated}
-                            />
-                            <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
+                            /> */}
+                            {/* <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> */}
+                            <Route exact path="/comparison" component={Comparison} />
                             <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
                         </Switch>
                     </Grid>

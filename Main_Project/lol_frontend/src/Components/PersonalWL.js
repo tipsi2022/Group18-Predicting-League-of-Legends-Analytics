@@ -1,0 +1,134 @@
+import React, { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import { ResponsiveContainer } from "recharts";
+import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
+import {
+    Avatar,
+    Button,
+    CardActionArea,
+    Card,
+    CardContent,
+    CardMedia,
+    Grid,
+    makeStyles,
+    Box,
+    Typography,
+} from "@material-ui/core";
+
+function PersonalWL(props) { 
+    
+
+    
+    
+    
+    
+    
+    return (
+        <>  
+
+            
+
+
+            
+            <div style={{ width: "100%" }}>
+                    <Box textAlign="center" p = {3}>
+                            
+                            <Typography variant='h5'>
+                                Match Statistics:
+
+                            </Typography>
+                    </Box> 
+                
+
+                <Grid
+                container
+                spacing={4}
+                direction="row"
+                justify="center"
+                
+                >
+                    
+                        
+                        
+                        
+                        
+                        <Grid item xs={12} sm={6} md={3} >
+                            
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`League Points: ${props.data.leaguePoints}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Wins: ${props.data.wins}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Losses: ${props.data.losses}`}
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Tier: ${props.data.tier}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+
+                            <Card>
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle2" component="h3">
+                                    {`Rank: ${props.data.rank}`} 
+                                </Typography>
+                                
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                            
+                        </Grid>
+                        
+                    
+                </Grid>
+                
+
+            </div>
+        </>
+    );
+}
+
+export default PersonalWL;

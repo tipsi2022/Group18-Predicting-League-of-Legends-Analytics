@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { ResponsiveContainer } from "recharts";
+import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
+import {
+    Avatar,
+    Button,
+    CardActionArea,
+    Card,
+    CardContent,
+    CardMedia,
+    Grid,
+    makeStyles,
+    Box,
+    Typography,
+} from "@material-ui/core";
 
 function PersonalDetails(props) { 
-    const size = 10; 
+    const size = 3; 
     const recoData = props.data.recommand;
     // const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
     // const recoLabel = recoData.slice(0, size).map((x) => x[0]);
 
     const usedData = props.data.used;
+    const dataC2 = usedData.slice(0, size);
     const displayUsed = usedData.slice(0, size).map((x) => x[1] * 100);
     const usedLabel = recoData.slice(0, size).map((x) => x[0]);
+    
     return (
         <>  
 
@@ -19,52 +35,57 @@ function PersonalDetails(props) {
 
             
             <div style={{ width: "100%" }}>
-                <ResponsiveContainer>
-                    <Bar
-                        data={{
-                            labels: usedLabel,
-                            datasets: [
-                                {
-                                    label: "Top Champions used by the Summoner (in %)",
-                                    data: displayUsed,
-                                    backgroundColor: [
-                                        "rgba(255, 99, 132, 0.4)",
-                                        "rgba(54, 162, 235, 0.4)",
-                                        "rgba(255, 206, 86, 0.4)",
-                                        "rgba(75, 192, 192, 0.4)",
-                                        "rgba(153, 102, 255, 0.4)",
-                                        "rgba(255, 159, 64, 0.4)",
-                                    ],
-                                    borderColor: [
-                                        "rgba(255, 99, 132, 1)",
-                                        "rgba(54, 162, 235, 1)",
-                                        "rgba(255, 206, 86, 1)",
-                                        "rgba(75, 192, 192, 1)",
-                                        "rgba(153, 102, 255, 1)",
-                                        "rgba(255, 159, 64, 1)",
-                                    ],
-                                    borderWidth: 1,
-                                },
-                            ],
-                        }}
-                        options={{
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                },
-                            },
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: "Current Champion Usage",
-                                },
-                            },
-                        }}
-                        // height={400}
-                        // width={900}
-                    />
-                </ResponsiveContainer>
+                    <Box textAlign="center" p = {3}>
+                            
+                            <Typography variant='h5'>
+                                Top 3 Champions:
+
+                            </Typography>
+                    </Box> 
+                
+
+                <Grid
+                container
+                spacing={4}
+                direction="row"
+                justify="center"
+                
+                >
+                    {dataC2.map(elem => (
+                        
+                        
+                        // {`${elem[0]}` ==='None'?null:
+                        
+                        <Grid item xs={12} sm={6} md={3} >
+                            <CardActionArea component={RouterLink} to={`/champions/${elem[0].replace(/\s+/g,'')}`}>
+                            <Card>
+                            <CardMedia
+                                component="img"
+                                alt="Champion Pic"
+                                height="100"
+                                
+                                image={`http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/${elem[0].replace(/\s+/g,'')}.png`}
+                                title="Champion"
+                            />
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {`${elem[0]}`}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {`Used in ${elem[1]*100}% of recent games`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                            </CardActionArea>
+                        </Grid>
+                        // }
+                    ))}
+                </Grid>
+                
+
             </div>
         </>
     );

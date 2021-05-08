@@ -61,7 +61,7 @@ function CreateChampions(props) {
                             {props.title}
                         </Typography>
                         <Typography variant="body2" color="primary" component="p">
-                            {props.tags.join(" /")}
+                            {props.tags.join("/")}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

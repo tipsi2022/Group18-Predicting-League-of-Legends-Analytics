@@ -1,36 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { ResponsiveContainer } from "recharts";
+import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
 import {
     Avatar,
     Button,
-    ButtonGroup,
+    
     Card,
-    CardActionArea,
     CardContent,
+    CardMedia,
     Grid,
     makeStyles,
-    Paper,
+    Box,
     Typography,
 } from "@material-ui/core";
-import { deepOrange } from "@material-ui/core/colors";
-import axios from "axios";
-import { useParams } from "react-router";
 
 
 
-function PersonalDetails(props) { 
-    const size = 5;
-    const size2 = 3 
-    const recoData = props.data.recommand;
-    const displayReco = recoData.slice(0, size).map((x) => x[1] * 100);
-    const recoLabel = recoData.slice(0, size).map((x) => x[0]);
-
-    const usedData = props.data.used;
-    const displayUsed = usedData.slice(0, size).map((x) => x[1] * 100);
-    const usedLabel = recoData.slice(0, size).map((x) => x[0]);
+const useStyles = makeStyles({
+    root: {
+        background: "#f2e4fd",
+    },
+});
 
 
+function PlayStyle(props) { 
+    const size = 3;
+    
+    const dataC = props.data.champion;
+    const dataC2 = dataC.slice(0, size);
+    
+
+    const dataL = props.data.lane;
+    const dataL2 = dataL.slice(0, size);
+
+    const dataR = props.data.role;
+    const dataR2 = dataR.slice(0, size);
+
+    const classes = useStyles();
 
     return (
         <>  
@@ -38,57 +46,94 @@ function PersonalDetails(props) {
             
 
 
+
             
             <div style={{ width: "100%" }}>
-                <ResponsiveContainer>
-                    <Bar
-                        data={{
-                            labels: usedLabel,
-                            datasets: [
-                                {
-                                    label: "Top Champions used by the Summoner (in %)",
-                                    data: displayUsed,
-                                    backgroundColor: [
-                                        "rgba(255, 99, 132, 0.4)",
-                                        "rgba(54, 162, 235, 0.4)",
-                                        "rgba(255, 206, 86, 0.4)",
-                                        "rgba(75, 192, 192, 0.4)",
-                                        "rgba(153, 102, 255, 0.4)",
-                                        "rgba(255, 159, 64, 0.4)",
-                                    ],
-                                    borderColor: [
-                                        "rgba(255, 99, 132, 1)",
-                                        "rgba(54, 162, 235, 1)",
-                                        "rgba(255, 206, 86, 1)",
-                                        "rgba(75, 192, 192, 1)",
-                                        "rgba(153, 102, 255, 1)",
-                                        "rgba(255, 159, 64, 1)",
-                                    ],
-                                    borderWidth: 1,
-                                },
-                            ],
-                        }}
-                        options={{
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                },
-                            },
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: "Current Champion Usage",
-                                },
-                            },
-                        }}
-                        // height={400}
-                        // width={900}
-                    />
-                </ResponsiveContainer>
+                
+                
+                
+                
+                <Box textAlign="center" p = {3}>
+                            
+                            <Typography variant='h5'>
+                                Top 3 Lanes:
+
+                            </Typography>
+                        </Box> 
+                
+
+                <Grid
+                container
+                spacing={4}
+                direction="row"
+                justify="center"
+                
+                >
+                    {dataL2.map(elem => (
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Card
+                                className={classes.root}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${elem[0]}`}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {`Chosen in ${elem[1]} of last 100 games`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+
+
+                <Box textAlign="center" p = {3}>
+                            
+                            <Typography variant='h5'>
+                                Top 3 Roles:
+
+                            </Typography>
+                        </Box> 
+                
+
+                <Grid
+                container
+                spacing={4}
+                direction="row"
+                justify="center"
+                
+                >
+                    {dataR2.map(elem => (
+                        <Grid item xs={12} sm={6} md={3} >
+                            <Card
+                                className={classes.root}
+                            >
+                            
+                            <CardContent>
+                                <Box textAlign = "center">
+                                <Typography gutterBottom variant="subtitle1" component="h3">
+                                    {`${elem[0]}`}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {`In ${elem[1]} of last 100 games`}
+                                </Typography>
+                                </Box>
+                            </CardContent>
+                            
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+
+                
             </div>
         </>
     );
 }
 
-export default PersonalDetails;
+export default PlayStyle;
