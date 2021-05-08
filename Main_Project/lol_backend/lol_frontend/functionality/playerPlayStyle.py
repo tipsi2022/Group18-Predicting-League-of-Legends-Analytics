@@ -5,16 +5,47 @@ import pandas as pd
 import csv
 import time
 from lol_frontend.variable import *
+from lol_frontend.models import summonerDetails
 
 #API_KEY = 'RGAPI-2aba161a-00a5-4b81-a1a2-1f0898283562'
 
 
+def detailsfromDB(summnorname, data):
+    details = {}
+    details['id'] = data['summonerid']
+    details['accountId'] = data['accountid']
+    details['name'] = data['summonername']
+    return details
 
 def getBySummonerName(region, SummnorName):
+    SummnorName = SummnorName.lower()   #so comapre value with our database
+    SummnorName = SummnorName.lstrip()
+    
+    try:
+        fetchdb = list(summonerDetails.objects.filter(region=region, summonername=SummnorName).values())
+        if len(fetchdb) != 0:
+            return detailsfromDB(SummnorName, fetchdb[0])
+    except:
+        pass
+    
+    SummnorName = SummnorName.replace(" ", "%20") #riot API uses no space 
+    # put rate api limit
+    time.sleep(1.3)
+    
     url = 'https://' + region + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + SummnorName + '?api_key=' + API_KEY
     responce = requests.get(url)
     if  responce.status_code == 200:
         details = responce.json()
+        
+        try:
+            dbpush = summonerDetails(summonername=details['name'].lower(),
+                                    region=region,
+                                    summonerid=details['id'],
+                                    accountid=details['accountId'])
+            dbpush.save()
+        except:
+            pass
+
         return details
     else:
         return None
@@ -74,7 +105,7 @@ def getPlayerChampionDict(region, PlayerList):
                 roleDetails[Accountid][role] = 1.0
 
         # for rate limit of riot api        
-        time.sleep(0.2)
+        time.sleep(0.5)
 
     return players, laneDetails, roleDetails
 
@@ -92,18 +123,18 @@ def playStyle(region, username):
 
     all_data = {}
     all_data['champion'] = []
-    all_data['championCnt'] = []
+    #all_data['championCnt'] = []
     all_data['lane'] = []
-    all_data['laneCnt'] = []
+    #all_data['laneCnt'] = []
     all_data['role'] = []
-    all_data['roleCnt'] = []
+    #all_data['roleCnt'] = []
 
-    return_username = (username.replace(" ", "%20")).lower() #riot API uses no space lower case verison of username as key
-    print("Username: ", username)
-    print('usenename  : ', return_username)
+    #return_username = (username.replace(" ", "%20")).lower() #riot API uses no space lower case verison of username as key
+    #print("Username: ", username)
+    #print('usenename  : ', return_username)
 
     #find account id by summonerName
-    details = getBySummonerName(region, return_username)
+    details = getBySummonerName(region, username)
 
     if details == None:
         return all_data    

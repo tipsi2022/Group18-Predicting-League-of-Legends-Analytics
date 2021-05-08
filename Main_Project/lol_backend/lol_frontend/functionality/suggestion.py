@@ -6,21 +6,47 @@ import pandas as pd
 import csv
 import time
 from lol_frontend.variable import *
+from lol_frontend.models import summonerDetails
 
 #API_KEY = 'RGAPI-cb7a554d-39e5-4a73-9422-9a6c16715b95'
 
 
-def getMasterPlayers(region):
-    pass
-
-def getChallengerPlayers(region):
-    pass
+def detailsfromDB(summnorname, data):
+    details = {}
+    details['id'] = data['summonerid']
+    details['accountId'] = data['accountid']
+    details['name'] = data['summonername']
+    return details
 
 def getBySummonerName(region, SummnorName):
+    SummnorName = SummnorName.lower()   #so comapre value with our database
+    SummnorName = SummnorName.lstrip()
+    
+    try:
+        fetchdb = list(summonerDetails.objects.filter(region=region, summonername=SummnorName).values())
+        if len(fetchdb) != 0:
+            return detailsfromDB(SummnorName, fetchdb[0])
+    except:
+        pass
+    
+    SummnorName = SummnorName.replace(" ", "%20") #riot API uses no space 
+    # put rate api limit
+    time.sleep(1.3)
+    
     url = 'https://' + region + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + SummnorName + '?api_key=' + API_KEY
     responce = requests.get(url)
     if  responce.status_code == 200:
         details = responce.json()
+        
+        try:
+            dbpush = summonerDetails(summonername=details['name'].lower(),
+                                    region=region,
+                                    summonerid=details['id'],
+                                    accountid=details['accountId'])
+            dbpush.save()
+        except:
+            pass
+
         return details
     else:
         return None
@@ -32,7 +58,7 @@ def getPlayerList(region):
     division = 'I'
     
     for tier in tier_arr:
-        url = 'https://' + region + '.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/' + tier + '/' + division + '?page=1&api_key=' + API_KEY
+        url = 'https://' + region + '.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/' + tier + '/' + division + '?page=1&api_key=' + DEV_API
         responce = requests.get(url)
         if responce.status_code == 200:
             list_arr = responce.json()
@@ -162,7 +188,7 @@ def fetch_data():
         arr = getPlayerList(region_name)
         player_list[region_name + '_playerList'] = arr    
         print(region_name ,' list crated')
-        time.sleep(1.3) 
+        time.sleep(3) 
 
         lis = []
         #now fetch summnor account id for getting player matchlist
@@ -198,11 +224,11 @@ def generatesuggestion(region, username):
     recommand = [] 
     used = []
     
-    return_username = (username.replace(" ", "%20")).lower() #riot API uses no space lower case verison of username as key
+    #return_username = (username.replace(" ", "%20")).lower() #riot API uses no space lower case verison of username as key
     #print("Username: ", username)
     #print('usenename  : ', return_username)
 
-    details = getBySummonerName(region, return_username)
+    details = getBySummonerName(region, username)
     if details == None:
         return suggestion
     
@@ -235,8 +261,16 @@ def generatesuggestion(region, username):
             champ = 'None'
         used.append([champ, res[1]] )
     
-    suggestion['recommand'] = recommand
-    suggestion['used'] = used
+    
+    try:
+        suggestion['recommand'] = recommand[0:11]
+    except:
+        suggestion['recommand'] = recommand
+
+    try:    
+        suggestion['used'] = used[0:11]
+    except:
+        suggestion['used'] = used
 
     return suggestion
 
