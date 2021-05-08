@@ -28,8 +28,7 @@ const useStyles = makeStyles({
 function PlayStyle(props) { 
     const size = 3;
     
-    const dataC = props.data.champion;
-    const dataC2 = dataC.slice(0, size);
+    
     
 
     const dataL = props.data.lane;
@@ -38,6 +37,7 @@ function PlayStyle(props) {
     const dataR = props.data.role;
     const dataR2 = dataR.slice(0, size);
 
+    
     const classes = useStyles();
 
     return (

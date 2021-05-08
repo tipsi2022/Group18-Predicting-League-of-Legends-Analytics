@@ -64,7 +64,7 @@ export default function PersonalStats() {
         console.log(reg);
         setFields({ summonername: sumName, region: reg });
         axios
-            .post("http://127.0.0.1:8000/api/suggestion", { region: reg, summnorname: sumName })
+            .post("/api/suggestion", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setChartData(res.data);
@@ -73,7 +73,7 @@ export default function PersonalStats() {
             console.log(chartData);
 
         axios
-            .post("http://127.0.0.1:8000/api/playerPlayStyle", { region: reg, summnorname: sumName })
+            .post("/api/playerPlayStyle", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setStyleData(res.data);
@@ -82,7 +82,7 @@ export default function PersonalStats() {
             console.log(styleData);
         
         axios
-            .post("http://127.0.0.1:8000/api/playerCompare", { region: [reg], player: [sumName] })
+            .post("/api/playerCompare", { region: [reg], player: [sumName] })
             .then((res) => { 
                 console.log(res);
                 const x = Object.values(res.data)
