@@ -266,16 +266,16 @@ export default function Dashboard() {
                                 path="/personal-stats"
                                 component={PersonalStats}
                                 isAuth={isAuthenticated}
-                            /> 
-                            
+                            />
+
                             <ProtectedRoutes
                                 exact
                                 path="/suggestions"
                                 component={Suggestions}
                                 isAuth={isAuthenticated}
-                            /> 
-                             <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> 
-                            
+                            />
+                            {/* <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />  */}
+                            <Route exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
                             <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
                         </Switch>
                     </Grid>

@@ -1,8 +1,8 @@
 import pandas as pd
 import json
 
-API_KEY = 'RGAPI-f1adfa84-7945-46e9-9293-a4e3777ca8b1'
-DEV_API = 'RGAPI-f1adfa84-7945-46e9-9293-a4e3777ca8b1'
+API_KEY = 'RGAPI-6af592dd-645d-4440-91f7-4d0adf3a4e9e'
+DEV_API = 'RGAPI-6af592dd-645d-4440-91f7-4d0adf3a4e9e'
 
 #mapper for champion name to its id
 mapper = {}
