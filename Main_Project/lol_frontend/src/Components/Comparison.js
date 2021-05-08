@@ -13,6 +13,8 @@ import {
     Select,
     TextField,
 } from "@material-ui/core";
+import axios from "axios";
+
 
 const useStyles = makeStyles({
     root: {
@@ -34,10 +36,14 @@ const useStyles = makeStyles({
 
 export default function Comparison() {
     const [fields, setFields] = useState([{ value: null }]);
+    const [styleData, setStyleData] = useState(null);
+
     function handleChange(i, event) {
         const values = [...fields];
         values[i].value = event.target.value;
         setFields(values);
+
+        
     }
 
     function handleAdd() {
@@ -54,6 +60,23 @@ export default function Comparison() {
 
     function handleSubmit() {
         console.log(fields);
+
+        axios
+            .post("http://127.0.0.1:8000/api/playerCompare", { region: ['na1'], player: ['doublelift'] })
+            .then((res) => { 
+                console.log(res);
+                
+                const x = Object.values(res.data)
+                const final = x[0]
+                const finalvals = Object.values(final)
+                setStyleData(finalvals);
+                console.log(finalvals);
+                console.log(finalvals[9][0]);
+            })
+            .catch((err) => console.log(err));
+            
+            
+
         // POST request here
     }
     const classes = useStyles();

@@ -12,9 +12,19 @@ import {
     Select,
     TextField,
     Typography,
+    CardMedia,
+    CardContent,
+    CardActions,
+    CardActionArea,
+    Card,
+    Box,
+    Grid,
 } from "@material-ui/core";
 import PersonalDetails from "./PersonalBar";
+import PlayStyle from "./PlayStyle";
+import PersonalWL from "./PersonalWL"
 import axios from "axios"; //Uncomment this
+
 
 const useStyles = makeStyles({
     root: {
@@ -39,11 +49,13 @@ const useStyles = makeStyles({
 });
 
 export default function PersonalStats() {
+    
     const [reg, setReg] = useState("");
     const [sumName, setSumName] = useState("");
     const [fields, setFields] = useState({ summonername: "", region: "" });
     const [chartData, setChartData] = useState(null);
     const [styleData, setStyleData] = useState(null);
+    const [leagueData, setLeagueData] = useState(null);
 
     const classes = useStyles();
 
@@ -52,7 +64,7 @@ export default function PersonalStats() {
         console.log(reg);
         setFields({ summonername: sumName, region: reg });
         axios
-            .post("/api/suggestion", { region: reg, summnorname: sumName })
+            .post("http://127.0.0.1:8000/api/suggestion", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setChartData(res.data);
@@ -61,13 +73,25 @@ export default function PersonalStats() {
             console.log(chartData);
 
         axios
-            .post("/api/playerPlayStyle", { region: reg, summnorname: sumName })
+            .post("http://127.0.0.1:8000/api/playerPlayStyle", { region: reg, summnorname: sumName })
             .then((res) => { 
                 console.log(res);
                 setStyleData(res.data);
             })
             .catch((err) => console.log(err));
             console.log(styleData);
+        
+        axios
+            .post("http://127.0.0.1:8000/api/playerCompare", { region: [reg], player: [sumName] })
+            .then((res) => { 
+                console.log(res);
+                const x = Object.values(res.data)
+                const final = x[0]
+                const finalvals = Object.values(final)
+                setLeagueData(finalvals[9][0]);
+            })
+            .catch((err) => console.log(err));
+            console.log(leagueData);
     }
 
     return (
@@ -122,9 +146,27 @@ export default function PersonalStats() {
             {fields.region !== "" && fields.summonername !== "" && chartData !== null && (
                 <>
                     
-                    <PersonalDetails data={chartData} />
+                    <Box textAlign='center' p={3}>
+                        <Button variant="outlined" color="secondary" disableElevation>
+                            <Typography variant='h4'>
+                                {`${sumName}`}
 
+                            </Typography>
+                            
+                        </Button>
+                    </Box>
                     
+                    <PersonalDetails data={chartData} />
+                    
+                    <Box textAlign='Center' p = {3}>
+                        
+                        <PlayStyle data = {styleData} />
+                    </Box>
+
+                    <Box textAlign='Center' p = {3}>
+                        
+                        <PersonalWL data = {leagueData} />
+                    </Box>
 
                 </>
                 
