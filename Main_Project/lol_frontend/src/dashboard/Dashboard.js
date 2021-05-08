@@ -200,7 +200,6 @@ export default function Dashboard() {
                     )}
                     {isAuthenticated && (
                         <ButtonGroup className={classes.root} size="large" color="default" variant="contained">
-                            
                             <Button
                                 startIcon={<ExitToApp />}
                                 component={RouterLink}
@@ -251,7 +250,7 @@ export default function Dashboard() {
                             <Route exact path="/tier-list" component={TierList} />
                             <Route exact path="/lead" component={Leaderboard} />
                             <Route exact path="/how-to-play" component={HowToPlay} />
-                            
+
                             <ProtectedRoutes
                                 exact
                                 path="/personal-stats"
@@ -265,9 +264,10 @@ export default function Dashboard() {
                                 component={Suggestions}
                                 isAuth={isAuthenticated}
                             />
-                            <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> 
+                            <ProtectedRoutes exact path="/comparison" component={Comparison} isAuth={isAuthenticated} />
                             {/* <Route exact path="/comparison" component={Comparison} isAuth={isAuthenticated} /> */}
-                            <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
+                            {/* <ProtectedRoutes exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} /> */}
+                            <Route exact path="/get-app" component={DownloadApp} isAuth={isAuthenticated} />
                         </Switch>
                     </Grid>
                     <Box pt={4}>

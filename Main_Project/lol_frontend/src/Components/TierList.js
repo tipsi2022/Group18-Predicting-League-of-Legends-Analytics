@@ -11,7 +11,6 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Link,
 } from "@material-ui/core";
 import dat from "../Data/tier_list";
 import { Link as RouterLink } from "react-router-dom";

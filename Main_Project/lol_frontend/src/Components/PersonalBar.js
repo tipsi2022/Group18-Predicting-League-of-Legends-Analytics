@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
-import { ResponsiveContainer } from "recharts";
 import { Link as RouterLink } from "react-router-dom";
-import axios from "axios";
 import {
-    Avatar,
-    Button,
     CardActionArea,
     Card,
     CardContent,
     CardMedia,
     Grid,
-    makeStyles,
     Box,
     Typography,
 } from "@material-ui/core";

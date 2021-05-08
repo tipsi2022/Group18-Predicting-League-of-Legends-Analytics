@@ -12,7 +12,6 @@ import {
   Face,
   Flare,
   GetApp,
-  Person,
   Subject,
   Timeline,
 } from "@material-ui/icons";

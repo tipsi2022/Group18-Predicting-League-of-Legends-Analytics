@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
 // import Link from "@material-ui/core/Link";
 // import { makeStyles } from "@material-ui/core/styles";
 // import chartData from "../Data/chartData";
@@ -12,13 +11,7 @@ import {
     Select,
     TextField,
     Typography,
-    CardMedia,
-    CardContent,
-    CardActions,
-    CardActionArea,
-    Card,
     Box,
-    Grid,
 } from "@material-ui/core";
 import PersonalDetails from "./PersonalBar";
 import PlayStyle from "./PlayStyle";
