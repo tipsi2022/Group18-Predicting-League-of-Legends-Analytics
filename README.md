@@ -1,4 +1,4 @@
-# YouTube Link Fot The demo of out project
+# YouTube Link for the Demo of our Project
 https://youtu.be/9QHYzz0SQzY
 
 # Predicting League of Legends Analytics
