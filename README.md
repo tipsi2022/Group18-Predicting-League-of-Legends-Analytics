@@ -23,7 +23,7 @@ So our website could provide a new direction in the field of competitive gaming,
 ## Development:-
 1. First Fork this repository and then Clone the Forked repository.
 2. Add your local repository as origin- git remote add origin <your-url>.
-3. Add this repository as upstream- git remote add upstream https://github.com/tipsi2022/Group18-Predicting-League-of-Legends-Analytics.git.
+3. Add this repository as upstream- git remote add upstream https://github.com/tipsijadav210/Group18-Predicting-League-of-Legends-Analytics.git.
 4. To sync your local repository with central repository - git pull upstream main.
 
 ## Contribution:-
